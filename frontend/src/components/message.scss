@@ -1,0 +1,27 @@
+#message-container {
+	position: fixed;
+	right: 20px;
+	bottom: 20px;
+	z-index: 100;
+
+	.message {
+		max-width: 300px;
+
+		margin-top: 10px;
+		padding: 15px 30px;
+		border-radius: 15px;
+		background-color: rgba(0, 70, 70, 0.8);
+		box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.6);
+
+		font-size: 1.2em;
+		font-weight: 500;
+		color: #fff;
+
+		transform: translateX(0px);
+		transition: transform 500ms ease-in-out;
+	}
+
+	.message.message-hidden {
+		transform: translateX(400px);
+	}
+}
