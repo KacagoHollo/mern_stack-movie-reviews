@@ -1,0 +1,6 @@
+landing page (home) - itt már látszanak a filmek  : navbar, search, apitól kapott filmlista
+login - új belépő meg kell adja a username-et:  google login
+film adatlapja - több info + review
+felhasználó profil oldala - saját review listázva - benne link a film adatlapjához 
+
+
