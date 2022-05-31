@@ -18,7 +18,8 @@ const Movie = ({ movieId }) => {
   };
 
   useEffect(() => {
-    getMovieDetails(406);
+    getMovieDetails(694);
+    //406,694
   }, []);
 
   return (
