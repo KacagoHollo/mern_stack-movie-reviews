@@ -22,18 +22,16 @@ router.post("/", auth({ block: true }), async (req, res) => {
   if (!user) return res.status(404).send("User not found.");
 
   // body: review
-  const newReview = {
+  user.reviews.push({
     movieId: req.body.movieId,
     content: req.body.content,
     rating: req.body.rating,
-  };
-
-  user.reviews.push(newReview);
+  });
 
   // return the new review only
   user.save((err) => {
     if (err) return res.status(500).send(err);
-    res.status(200).json(newReview);
+    res.status(200).json(user.reviews[user.reviews.length - 1]);
   });
 });
 
