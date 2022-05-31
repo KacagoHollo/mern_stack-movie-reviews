@@ -2,14 +2,24 @@ const router = require("express").Router();
 const User = require("../model/user");
 const auth = require("../middleware/auth");
 
-router.get("/"); // reviews
-// token or NOT token
-// queried both by movie and by user
-// return all review [] if NOT logged in
-// to "public"
-//
-// return [all review] of the user if logged in
-// to "dashboard, profile page, private"
+router.get("/", auth({ block: false }), async (req, res) => { // NO QUERRIES YET
+  // token or NOT token
+  if (res.locals.userId) {
+    const user = await User.findById(res.locals.userId);
+    if (!user) return res.status(404).send("User not found.");
+    
+    // return [all review] of the user if logged in
+    // to "dashboard, profile page, private"
+    return res.json(user.reviews);
+  };
+  // return all review [] if NOT logged in
+  // to "public"
+  // queried both by movie and by user
+  const users = await User.find();
+  const reviews = [];
+  users.map(user => {reviews.push(...user.reviews)});
+  return res.json(reviews);
+});
 
 router.post("/", auth({ block: true }), async (req, res) => {
   // header: token
