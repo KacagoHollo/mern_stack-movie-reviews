@@ -4,7 +4,7 @@ const reviewSchema = new mongoose.Schema({
   movieId: { type: String, required: true, unique: true },
   content: { type: String, required: true },
   rating: { type: Number, required: true },
-  timeStamp: { type: Date, required: true, default: Date.now() },
+  timeStamp: { type: Date, default: Date.now() },
 });
 
 const userSchema = new mongoose.Schema({
