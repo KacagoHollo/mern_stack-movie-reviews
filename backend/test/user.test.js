@@ -2,6 +2,7 @@ const app = require('../app')
 const mockserver = require('supertest');
 const User = require('../model/user');
 const {startVirtualDb, stopVirtualDb, clearUsers} = require('./util/inMemoryDb')
+const jwt = require('jsonwebtoken');
 
 describe('/api GET test', () => {
     let connection;
@@ -23,14 +24,19 @@ describe('/api GET test', () => {
     it('should work', async () => {
         //given
         const newUser = new User({
-            username: "testUser", googleId: "testGoogle"
+            username: "testUser",
+            providers: {
+                google: "888888",
+                },        
         });
         await newUser.save();
+        console.log(newUser)
         
-        client.set('authorization', newUser._id);
+        const token = jwt.sign({_id: newUser._id, username: newUser.username}, process.env.TOKEN_SECRET, {expiresIn:'1h'})
+        client.set('authorization', token);
         
         //when
-        const response = await client.post('/api/user/authenticate')
+        const response = await client.post('/api/user/login')
         
         //then
         expect(response.status).toBe(200);

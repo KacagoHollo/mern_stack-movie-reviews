@@ -20,6 +20,9 @@ app.use([
 const userRoutes = require('./route/user');
 app.use('/api/user', userRoutes);
 
+const reviewRoutes = require('./route/review');
+app.use('/api/review', reviewRoutes);
+
 app.use(errorHandler);
 
 module.exports = app;
