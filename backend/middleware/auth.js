@@ -3,7 +3,7 @@ const auth = ({block}) => (req, res, next) => {
         const userId = req.headers.authorization;
         res.locals.userId = userId;
         // console.log(`Authenticated, _id:  ${userId}`);
-        if (block && !res.locals.userId) return res.sendStatus(401);
+        // if (block && !res.locals.userId) return res.sendStatus(401);
     
         next();
     };
