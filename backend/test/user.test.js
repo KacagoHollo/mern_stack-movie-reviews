@@ -1,3 +1,4 @@
+require('dotenv').config();
 const app = require('../app')
 const mockserver = require('supertest');
 const User = require('../model/user');
@@ -21,6 +22,7 @@ describe('/api GET test', () => {
 
     afterEach(async () => await clearUsers(User));
 
+/*  NEM JÓ, így nem lehet logint tesztelni, mert nincs google code.   
     it('should work', async () => {
         //given
         const newUser = new User({
@@ -41,5 +43,5 @@ describe('/api GET test', () => {
         //then
         expect(response.status).toBe(200);
     });
-
+ */
 });
