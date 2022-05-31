@@ -1,0 +1,21 @@
+.movie-details-container {
+  display: flex;
+}
+
+.movie-details-image {
+  max-width: 30%;
+}
+
+.actor-container {
+  display: flex;
+  overflow: scroll;
+}
+.actor-card {
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.actor-image {
+  height: 200px;
+}
