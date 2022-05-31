@@ -17,20 +17,21 @@ Manage deployments from automated scripts
 ## Tasks
 
 1. Create a frontend application, which fetches movies from a movie api, so that logged in users can see them, and write reviews. Create a backend application, where these reviews are persisted and they can be queried both by movie and by reviewer through a rest api.
-    - Only a logged in user can write reviews.
-    - Reviews can be searched by movies and by reviewer.
-    - The api is responsive and well designed.
+
+   - Only a logged in user can write reviews.
+   - Reviews can be searched by movies and by reviewer.
+   - The api is responsive and well designed.
 
 2. Connect Travis CI to the github repository, create quality assurance steps, build and push the frontend and backend services to dockerhub, so that at the end of the pipeline you can modify the deployment config sloppy's api, and make sure that the new version is automatically deployed.
-    - Travis CI is connected to the repo.
-    - The master branch is protected - no direct commits can alter it, only pull requests.
-    - On every pull request, a code format check runs.
-    - On every pull request, a unit and integration tests run. (optional)
-    - On every pull request, a sonar analysis runs. (optional)
-    - Thresholds for these quality assurance steps exist - merge should not be possible without them. (optional)
-    - When the merge is possible, a docker images are created for both the frontend and the backend.
-    - Images are pushed to a dockerhub repository.
-    - When the merge is possible, and the images are pushed successfully the new version of the app should be redeployed through sloppy api.
+   - Travis CI is connected to the repo.
+   - The master branch is protected - no direct commits can alter it, only pull requests.
+   - On every pull request, a code format check runs.
+   - On every pull request, a unit and integration tests run. (optional)
+   - On every pull request, a sonar analysis runs. (optional)
+   - Thresholds for these quality assurance steps exist - merge should not be possible without them. (optional)
+   - When the merge is possible, a docker images are created for both the frontend and the backend.
+   - Images are pushed to a dockerhub repository.
+   - When the merge is possible, and the images are pushed successfully the new version of the app should be redeployed through sloppy api.
 
 ## General requirements
 
@@ -54,3 +55,6 @@ Manage deployments from automated scripts
 - <i class="far fa-candy-cane"></i> [Prettier CLI](https://prettier.io/docs/en/cli.html)
 - <i class="far fa-candy-cane"></i> [Sonarqube](https://docs.sonarqube.org/latest/)
 - <i class="far fa-book-open"></i> [Sloppy API docs](https://apidocs.sloppy.io/)
+
+-----development(protected)
+'--------feature(team)

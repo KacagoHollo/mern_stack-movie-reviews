@@ -1,10 +1,20 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-const userSchema = new mongoose.Schema({
-    username: {type: String, required: true, unique: true},
-    googleId: {type: String, required: true, unique: true},
+const reviewSchema = new mongoose.Schema({
+  movieId: { type: String, required: true, unique: true },
+  content: { type: String, required: true },
+  rating: { type: Number, required: true },
+  timeStamp: { type: Date, required: true, default: Date.now() },
 });
 
-const User = mongoose.model('User', userSchema);
+const userSchema = new mongoose.Schema({
+  username: { type: String, unique: true },
+  providers: {
+    google: { type: String, required: true, unique: true },
+  },
+  reviews: [reviewSchema],
+});
+
+const User = mongoose.model("User", userSchema);
 
 module.exports = User;
