@@ -11,77 +11,85 @@ router.get("/"); // reviews
 // return [all review] of the user if logged in
 // to "dashboard, profile page, private"
 
-router.post("/", auth({block: true}), async (req, res) => {
-    // header: token
-    // payload validation
-    if (!req.body.movieId || !req.body.content || !req.body.rating) return res.status(400).send('Body must contain movieId, content and rating.');
+router.post("/", auth({ block: true }), async (req, res) => {
+  // header: token
+  // payload validation
+  if (!req.body.movieId || !req.body.content || !req.body.rating)
+    return res.status(400).send("Body must contain movieId, content and rating.");
 
-    // add new review by userId
-    const user = await User.findById(res.locals.userId);
-    if (!user) return res.status(404).send('user not found.');
+  // add new review by userId
+  const user = await User.findById(res.locals.userId);
+  if (!user) return res.status(404).send("User not found.");
 
-    // body: review
-    const newReview = {
-        movieId: req.body.movieId,
-        content: req.body.content,
-        rating: req.body.rating,
-    }
+  // body: review
+  const newReview = {
+    movieId: req.body.movieId,
+    content: req.body.content,
+    rating: req.body.rating,
+  };
 
-    user.reviews.push(newReview);
+  user.reviews.push(newReview);
 
-    // return the new review only
-    user.save((err) => {
-        if (err) return res.status(500).send(err);
-        res.json(newReview);
-    });
+  // return the new review only
+  user.save((err) => {
+    if (err) return res.status(500).send(err);
+    res.status(200).json(newReview);
+  });
 });
 
-router.patch("/:reviewId", auth({block: true}), async (req, res) => {
-    // update review by mongoId
-    // header: token
+router.patch("/:reviewId", auth({ block: true }), async (req, res) => {
+  // update review by mongoId
+  // header: token
 
-    //request validation
-    if (!req.params.reviewId) return res.status(400).send('No reviewId parameter found.');
+  //request validation
+  if (!req.params.reviewId) return res.status(400).send("No reviewId parameter found.");
 
-    // payload validation
-    if (!req.body.movieId && !req.body.content && !req.body.rating) return res.status(400).send('Body must contain movieId, content or rating.');
-    
-    // find user by userId and find review by reviewId
-    const user = await User.findById(res.locals.userId);
-    if (!user) return res.status(404).send('User not found.');
-    
-    // update review
-    const review = user.reviews.id(req.params.reviewId);
-    if (req.body.movieId) {review.movieId = req.body.movieId};
-    if (req.body.content) {review.content = req.body.content};
-    if (req.body.rating) {review.rating = req.body.rating};
+  // payload validation
+  if (!req.body.movieId && !req.body.content && !req.body.rating)
+    return res.status(400).send("Body must contain movieId, content or rating.");
 
-    // save and return review
-    user.save((err) => {
-        if (err) return res.status(500).send(err);
-        res.json(review);
-    });
-}); 
+  // find user by userId and find review by reviewId
+  const user = await User.findById(res.locals.userId);
+  if (!user) return res.status(404).send("User not found.");
 
-router.delete("/:reviewId", auth({block: true}), async (req, res) => {
-    // delete review by mongoId
-    // header: token
+  // update review
+  const review = user.reviews.id(req.params.reviewId);
+  if (req.body.movieId) {
+    review.movieId = req.body.movieId;
+  }
+  if (req.body.content) {
+    review.content = req.body.content;
+  }
+  if (req.body.rating) {
+    review.rating = req.body.rating;
+  }
 
-    //request validation
-    if (!req.params.reviewId) return res.status(400).send('No reviewId parameter found.');
-    
-    // find user by userId and find review by reviewId
-    const user = await User.findById(res.locals.userId);
-    if (!user) return res.status(404).send('User not found.');
-    
-    // delete review
-    user.reviews.pull(req.params.reviewId);
+  // save and return review
+  user.save((err) => {
+    if (err) return res.status(500).send(err);
+    res.json(review);
+  });
+});
 
-    // save and respond
-    user.save((err) => {
-        if (err) return res.status(500).send(err);
-        res.sendStatus(200);
-    });
-}); 
+router.delete("/:reviewId", auth({ block: true }), async (req, res) => {
+  // delete review by mongoId
+  // header: token
+
+  //request validation
+  if (!req.params.reviewId) return res.status(400).send("No reviewId parameter found.");
+
+  // find user by userId and find review by reviewId
+  const user = await User.findById(res.locals.userId);
+  if (!user) return res.status(404).send("User not found.");
+
+  // delete review
+  user.reviews.pull(req.params.reviewId);
+
+  // save and respond
+  user.save((err) => {
+    if (err) return res.status(500).send(err);
+    res.sendStatus(200);
+  });
+});
 
 module.exports = router;
