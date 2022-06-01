@@ -2,46 +2,76 @@ require('dotenv').config();
 const app = require('../app')
 const mockserver = require('supertest');
 const User = require('../model/user');
-const {startVirtualDb, stopVirtualDb, clearUsers} = require('./util/inMemoryDb')
-const jwt = require('jsonwebtoken');
+const { startVirtualDb, stopVirtualDb, clearUsers } = require("./util/inMemoryDb");
 
-describe('/api GET test', () => {
+describe("requests to /api/review", () => {
     let connection;
-    let mongodb;
+    let server;
     let client;
 
     beforeAll(async () => {
         const result = await startVirtualDb();
-        connection = result.connectionVirtualMongoDb;
-        mongodb = result.virtualMongoDb;
-    
+        connection = result[0];
+        server = result[1];
         client = mockserver.agent(app);
     });
 
-    afterAll(async () => await stopVirtualDb(connection, mongodb));
-
-    afterEach(async () => await clearUsers(User));
-
-/*  NEM JÓ, így nem lehet logint tesztelni, mert nincs google code.   
-    it('should work', async () => {
-        //given
-        const newUser = new User({
-            username: "testUser",
-            providers: {
-                google: "888888",
-                },        
-        });
-        await newUser.save();
-        console.log(newUser)
-        
-        const token = jwt.sign({_id: newUser._id, username: newUser.username}, process.env.TOKEN_SECRET, {expiresIn:'1h'})
-        client.set('authorization', token);
-        
-        //when
-        const response = await client.post('/api/user/login')
-        
-        //then
-        expect(response.status).toBe(200);
+    afterEach(async () => {
+        await clearUsers(User);
     });
- */
+
+    afterAll(async () => {
+        await stopVirtualDb(connection, server);
+    });
+
+    describe("/api/users/login request", () => {
+
+        it('should respond 400 if no request body present.', async () => {
+            //given
+    /*         const newUser = new User({
+                username: "testUser",
+                providers: {
+                    google: "888888",
+                    },        
+            });
+            await newUser.save();
+    */
+            //when
+            const response = await client.post('/api/user/login');
+            
+            //then
+            expect(response.status).toBe(400);
+        });
+
+        it('should respond 400 if no code and provider in request body present.', async () => {
+            //given
+
+            //when
+            const response = await client.post('/api/user/login').send({});
+            
+            //then
+            expect(response.status).toBe(400);
+        });
+
+        it('should respond 401 if malformed code in request body present.', async () => {
+            //given
+
+            //when
+            const response = await client.post('/api/user/login').send({code: 'asdgfg', provider: 'google'});
+            
+            //then
+            expect(response.status).toBe(401);
+        });
+
+        it('should respond 401 if expired code in request body present.', async () => {
+            //given
+
+            //when
+            const response = await client.post('/api/user/login').send({code: '4/0AX4XfWhcl9fALg0dhF8NOQlWVTTaNFrEW2ByVcR4MHt0oqIfKF3QijXww_i8GND_HzbD4g', provider: 'google'});
+            
+            //then
+            expect(response.status).toBe(401);
+        });
+
+    });
 });

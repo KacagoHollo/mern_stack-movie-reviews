@@ -1,7 +1,6 @@
 require('dotenv').config();
 const app = require("../app");
 const mockserver = require("supertest");
-const { MongoMemoryServer } = require("mongodb-memory-server");
 const User = require("../model/user");
 const { startVirtualDb, stopVirtualDb, clearUsers } = require("./util/inMemoryDb");
 const jwt = require('jsonwebtoken');

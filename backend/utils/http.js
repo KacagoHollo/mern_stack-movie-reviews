@@ -11,7 +11,7 @@ const http = (baseurl) => {
       const response = await instance.post(url, body);
       return response;
     } catch (error) {
-      console.log(error);
+      console.log(error.data);
       if (!error.response) return error;
 
       return error.response;
