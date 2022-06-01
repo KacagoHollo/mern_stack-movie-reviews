@@ -33,7 +33,6 @@ router.post("/login", async (req, res) => {
   });
 
   if (!response) return res.sendStatus(500);
-  console.log(response);
   if (response.status !== 200) return res.status(401).send("google error");
 
   const decoded = jwt.decode(response.data.id_token);
@@ -51,6 +50,7 @@ router.post("/login", async (req, res) => {
   let user = await User.findOne({ [`providers.${provider}`]: decoded.sub });
   if (!user) {
     user = new User({
+      // username: decoded.email.split("@")[0],
       providers: {
         [provider]: decoded.sub,
       },

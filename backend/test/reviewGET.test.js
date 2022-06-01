@@ -36,19 +36,31 @@ describe("requests to /api/review", () => {
         },
         reviews: [
           {
-            movieId: "1234",
-            content: "nice movie but too long",
-            rating: 6.5,
+            "username": "archie@tombacz",
+            "userId": `"987654321"`,
+            "movieId": "11111",
+            "movieTitle": "Shining",
+            "title": "Scary movie",
+            "content": "Loremc3",
+            "rating": 5,
           },
           {
-            movieId: "4321",
-            content: "bit short",
-            rating: 8.5,
+            "username": "archie@tombacz",
+            "userId": "987654321",
+            "movieId": "22222",
+            "movieTitle": "Shining",
+            "title": "Scary movie",
+            "content": "Loremc3",
+            "rating": 5,
           },
           {
-            movieId: "9876",
-            content: "just about right",
-            rating: 9.5,
+            "username": "archie@tombacz",
+            "userId": "987654321",
+            "movieId": "33333",
+            "movieTitle": "Shining",
+            "title": "Scary movie",
+            "content": "Loremc3",
+            "rating": 5,
           }
         ]     
       });
@@ -60,19 +72,31 @@ describe("requests to /api/review", () => {
         },
         reviews: [
           {
-            movieId: "5555",
-            content: "nice movie but too long",
-            rating: 6.5,
+            "username": "archie@tombacz",
+            "userId": "6297d79f013c12cf39268c84",
+            "movieId": "12345",
+            "movieTitle": "Shining",
+            "title": "Scary movie",
+            "content": "Loremc3",
+            "rating": 5,
           },
           {
-            movieId: "7777",
-            content: "bit short",
-            rating: 8.5,
+            "username": "archie@tombacz",
+            "userId": "6297d79f013c12cf39268c84",
+            "movieId": "23456",
+            "movieTitle": "Shining",
+            "title": "Scary movie",
+            "content": "Loremc3",
+            "rating": 5,
           },
           {
-            movieId: "6666",
-            content: "just about right",
-            rating: 9.5,
+            "username": "archie@tombacz",
+            "userId": "6297d79f013c12cf39268c84",
+            "movieId": "34567",
+            "movieTitle": "Shining",
+            "title": "Scary movie",
+            "content": "Loremc3",
+            "rating": 5,
           }
         ]     
       });
@@ -95,19 +119,31 @@ describe("requests to /api/review", () => {
         },
         reviews: [
           {
-            movieId: "1234",
-            content: "nice movie but too long",
-            rating: 6.5,
+            "username": "archie@tombacz",
+            "userId": `"987654321"`,
+            "movieId": "11111",
+            "movieTitle": "Shining",
+            "title": "Scary movie",
+            "content": "Loremc3",
+            "rating": 5,
           },
           {
-            movieId: "4321",
-            content: "bit short",
-            rating: 8.5,
+            "username": "archie@tombacz",
+            "userId": "987654321",
+            "movieId": "22222",
+            "movieTitle": "Shining",
+            "title": "Scary movie",
+            "content": "Loremc3",
+            "rating": 5,
           },
           {
-            movieId: "9876",
-            content: "just about right",
-            rating: 9.5,
+            "username": "archie@tombacz",
+            "userId": "987654321",
+            "movieId": "33333",
+            "movieTitle": "Shining",
+            "title": "Scary movie",
+            "content": "Loremc3",
+            "rating": 5,
           }
         ]     
       });
@@ -119,25 +155,37 @@ describe("requests to /api/review", () => {
         },
         reviews: [
           {
-            movieId: "5555",
-            content: "nice movie but too long",
-            rating: 6.5,
+            "username": "archie@tombacz",
+            "userId": "6297d79f013c12cf39268c84",
+            "movieId": "12345",
+            "movieTitle": "Shining",
+            "title": "Scary movie",
+            "content": "Loremc3",
+            "rating": 5,
           },
           {
-            movieId: "7777",
-            content: "bit short",
-            rating: 8.5,
+            "username": "archie@tombacz",
+            "userId": "6297d79f013c12cf39268c84",
+            "movieId": "23456",
+            "movieTitle": "Shining",
+            "title": "Scary movie",
+            "content": "Loremc3",
+            "rating": 5,
           },
           {
-            movieId: "6666",
-            content: "just about right",
-            rating: 9.5,
+            "username": "archie@tombacz",
+            "userId": "6297d79f013c12cf39268c84",
+            "movieId": "34567",
+            "movieTitle": "Shining",
+            "title": "Scary movie",
+            "content": "Loremc3",
+            "rating": 5,
           }
         ]     
       });
       await user2.save();
 
-      const token = jwt.sign({userId: user1._id, username: user1.username}, process.env.TOKEN_SECRET, {expiresIn:'1h'})
+      const token = jwt.sign({userId: user2._id, username: user2.username}, process.env.TOKEN_SECRET, {expiresIn:'1h'})
       client.set('authorization', token);
     
       // when
@@ -146,7 +194,7 @@ describe("requests to /api/review", () => {
       // then
       expect(response.statusCode).toBe(200);
       expect(response.body.length).toBe(3)
-      expect(response.body[0].movieId).toBe("1234")
+      expect(response.body[0].movieId).toBe("12345")
     });
 
     it("should return only reviewer's reviews when querried", async () => {
@@ -158,19 +206,31 @@ describe("requests to /api/review", () => {
         },
         reviews: [
           {
-            movieId: "1234",
-            content: "nice movie but too long",
-            rating: 6.5,
+            "username": "archie@tombacz",
+            "userId": `"987654321"`,
+            "movieId": "11111",
+            "movieTitle": "Shining",
+            "title": "Scary movie",
+            "content": "Loremc3",
+            "rating": 5,
           },
           {
-            movieId: "4321",
-            content: "bit short",
-            rating: 8.5,
+            "username": "archie@tombacz",
+            "userId": "987654321",
+            "movieId": "22222",
+            "movieTitle": "Shining",
+            "title": "Scary movie",
+            "content": "Loremc3",
+            "rating": 5,
           },
           {
-            movieId: "9876",
-            content: "just about right",
-            rating: 9.5,
+            "username": "archie@tombacz",
+            "userId": "987654321",
+            "movieId": "33333",
+            "movieTitle": "Shining",
+            "title": "Scary movie",
+            "content": "Loremc3",
+            "rating": 5,
           }
         ]     
       });
@@ -182,19 +242,31 @@ describe("requests to /api/review", () => {
         },
         reviews: [
           {
-            movieId: "5555",
-            content: "nice movie but too long",
-            rating: 6.5,
+            "username": "archie@tombacz",
+            "userId": "6297d79f013c12cf39268c84",
+            "movieId": "12345",
+            "movieTitle": "Shining",
+            "title": "Scary movie",
+            "content": "Loremc3",
+            "rating": 5,
           },
           {
-            movieId: "7777",
-            content: "bit short",
-            rating: 8.5,
+            "username": "archie@tombacz",
+            "userId": "6297d79f013c12cf39268c84",
+            "movieId": "23456",
+            "movieTitle": "Shining",
+            "title": "Scary movie",
+            "content": "Loremc3",
+            "rating": 5,
           },
           {
-            movieId: "6666",
-            content: "just about right",
-            rating: 9.5,
+            "username": "archie@tombacz",
+            "userId": "6297d79f013c12cf39268c84",
+            "movieId": "34567",
+            "movieTitle": "Shining",
+            "title": "Scary movie",
+            "content": "Loremc3",
+            "rating": 5,
           }
         ]     
       });
@@ -208,7 +280,7 @@ describe("requests to /api/review", () => {
       // then
       expect(response.statusCode).toBe(200);
       expect(response.body.length).toBe(3)
-      expect(response.body[0].movieId).toBe("5555")
+      expect(response.body[0].movieId).toBe("12345")
     });
 
     it("should return empty Array when no movie with matching movieId when querried", async () => {
@@ -220,19 +292,31 @@ describe("requests to /api/review", () => {
         },
         reviews: [
           {
-            movieId: "1234",
-            content: "nice movie but too long",
-            rating: 6.5,
+            "username": "archie@tombacz",
+            "userId": `"987654321"`,
+            "movieId": "11111",
+            "movieTitle": "Shining",
+            "title": "Scary movie",
+            "content": "Loremc3",
+            "rating": 5,
           },
           {
-            movieId: "4321",
-            content: "bit short",
-            rating: 8.5,
+            "username": "archie@tombacz",
+            "userId": "987654321",
+            "movieId": "22222",
+            "movieTitle": "Shining",
+            "title": "Scary movie",
+            "content": "Loremc3",
+            "rating": 5,
           },
           {
-            movieId: "9876",
-            content: "just about right",
-            rating: 9.5,
+            "username": "archie@tombacz",
+            "userId": "987654321",
+            "movieId": "33333",
+            "movieTitle": "Shining",
+            "title": "Scary movie",
+            "content": "Loremc3",
+            "rating": 5,
           }
         ]     
       });
@@ -258,19 +342,31 @@ describe("requests to /api/review", () => {
         },
         reviews: [
           {
-            movieId: "1234",
-            content: "nice movie but too long",
-            rating: 6.5,
+            "username": "archie@tombacz",
+            "userId": `"987654321"`,
+            "movieId": "11111",
+            "movieTitle": "Shining",
+            "title": "Scary movie",
+            "content": "Loremc3",
+            "rating": 5,
           },
           {
-            movieId: "4321",
-            content: "bit short",
-            rating: 8.5,
+            "username": "archie@tombacz",
+            "userId": "987654321",
+            "movieId": "22222",
+            "movieTitle": "Shining",
+            "title": "Scary movie",
+            "content": "Loremc3",
+            "rating": 5,
           },
           {
-            movieId: "9876",
-            content: "just about right",
-            rating: 9.5,
+            "username": "archie@tombacz",
+            "userId": "987654321",
+            "movieId": "33333",
+            "movieTitle": "Shining",
+            "title": "Scary movie",
+            "content": "Loremc3",
+            "rating": 5,
           }
         ]     
       });
@@ -282,19 +378,31 @@ describe("requests to /api/review", () => {
         },
         reviews: [
           {
-            movieId: "5555",
-            content: "nice movie but too long",
-            rating: 6.5,
+            "username": "archie@tombacz",
+            "userId": "6297d79f013c12cf39268c84",
+            "movieId": "12345",
+            "movieTitle": "Shining",
+            "title": "Scary movie",
+            "content": "Loremc3",
+            "rating": 5,
           },
           {
-            movieId: "7777",
-            content: "bit short",
-            rating: 8.5,
+            "username": "archie@tombacz",
+            "userId": "6297d79f013c12cf39268c84",
+            "movieId": "23456",
+            "movieTitle": "Shining",
+            "title": "Scary movie",
+            "content": "Loremc3",
+            "rating": 5,
           },
           {
-            movieId: "6666",
-            content: "just about right",
-            rating: 9.5,
+            "username": "archie@tombacz",
+            "userId": "6297d79f013c12cf39268c84",
+            "movieId": "34567",
+            "movieTitle": "Shining",
+            "title": "Scary movie",
+            "content": "Loremc3",
+            "rating": 5,
           }
         ]     
       });
@@ -308,7 +416,7 @@ describe("requests to /api/review", () => {
       // then
       expect(response.statusCode).toBe(200);
       expect(response.body.length).toBe(1)
-      expect(response.body[0].movieId).toBe("7777")
+      expect(response.body[0].movieId).toBe("23456")
     });
 
   });

@@ -86,16 +86,19 @@ describe("requests to /api/review", () => {
     
       // when
       const response = await client.post("/api/review").send({
-        movieId: "1234",
-        content: "nice movie but too long",
-        rating: 6.5,
+        username: "archie@tombacz",
+        movieId: "123456789",
+        movieTitle: "Shining 2",
+        title: "Scary movie as well",
+        content: "Loremc3",
+        rating: "5"
       });
 
       // then
       expect(response.statusCode).toBe(200);
 
       const dbUser = await User.findById(user._id);
-      expect(dbUser.reviews[0].movieId).toBe("1234");
+      expect(dbUser.reviews[0].movieId).toBe("123456789");
       expect(response.body.movieId).toBe(dbUser.reviews[0].movieId);
     });
 
