@@ -36,6 +36,7 @@ const Landing = ({ server, domain, setDomain }) => {
             picture: "https://image.tmdb.org/t/p/original" + movies.poster_path,
             title: movies.title,
             release_date: movies.release_date,
+            id: movies.id,
           };
           landingMovies.push(movie);
         }
@@ -145,7 +146,11 @@ const Landing = ({ server, domain, setDomain }) => {
 
         {movieList.map((mov, i) => (
           <div key={i} className="movie-list">
-            <img src={mov.picture} alt="f" />
+            <img
+              src={mov.picture}
+              alt="f"
+              onClick={() => navigate(`/movie/${mov.id}`)}
+            />
             {/* <Link to={`/Movie/${movg.id}`}>
                 <img src={mov.picture} alt="A" /> */}
             <h2>{mov.title}</h2>
