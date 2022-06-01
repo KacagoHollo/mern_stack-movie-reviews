@@ -57,8 +57,8 @@ const Landing = ({ server, domain, setDomain }) => {
   const searchFetch = async () => {
     const response = await axios
       .get(
-        `https://api.themoviedb.org/3/search/movie?api_key=ecab10a318d6e5505711563709a6cd40`,
-        { param }
+        `https://api.themoviedb.org/3/search/movie?api_key=ecab10a318d6e5505711563709a6cd40`
+        //{ param }
       )
       .then((response) => {
         for (const moviesS of response.data.results) {
