@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { movieDetails1, movieDetails2 } from "../api/movieDetails";
 import MovieDetails from "../components/MovieDetails";
 import MovieCrew from "../components/MovieCrew";
-// import MovieReviews from "../components/MovieReviews";
+import MovieReviews from "../components/MovieReviews";
 
 const Movie = ({ movieId }) => {
   const [details1, setDetails1] = useState("");
