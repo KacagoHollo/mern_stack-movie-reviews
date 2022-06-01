@@ -10,8 +10,8 @@ const auth = ({block}) => (req, res, next) => {
             } else {
                 res.locals.userId = user.userId;
             };
+            next();
         });
-        next();
     };
 
 module.exports = auth;
