@@ -29,10 +29,10 @@ router.get("/", auth({ block: false }), async (req, res) => {
 router.post("/", auth({ block: true }), async (req, res) => {
   // header: token
   // payload validation
-  if (!req.body.movieId || !req.body.content || !req.body.rating)
+  if (!req.body.movieId || !req.body.content || !req.body.rating || !req.body.movieTitle || !req.body.title)
     return res
       .status(400)
-      .send("Body must contain movieId, content and rating.");
+      .send("Body must contain movieId, movieTitle, title, content and rating.");
 
   console.log(res.locals.userId); // add new review by userId
   const user = await User.findById(res.locals.userId);
@@ -65,7 +65,7 @@ router.patch("/:reviewId", auth({ block: true }), async (req, res) => {
     return res.status(400).send("No reviewId parameter found.");
 
   // payload validation
-  if (!req.body.movieId && !req.body.content && !req.body.rating && !req.body.movieTitle && !req.body.title)
+  if (!req.body.movieId && !req.body.content && !req.body.rating && !req.body.movieTitle && !req.body.title && !req.body.username)
     return res
       .status(400)
       .send("Body must contain movieId, movieTitle, title, content or rating.");
