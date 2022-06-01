@@ -15,7 +15,7 @@ router.get("/", auth({ block: false }), async (req, res) => { // NO QUERRIES YET
   // return all review [] if NOT logged in
   // to "public"
   // queried both by movie and by user
-  const users = await User.find();
+  const users = await User.find().where(req.query.reviewer ? _id === req.query.reviewer : null);
   const reviews = [];
   users.map(user => {reviews.push(...user.reviews)});
   return res.json(reviews);

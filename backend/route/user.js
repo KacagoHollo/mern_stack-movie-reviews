@@ -47,8 +47,8 @@ router.post("/login", async (req, res) => {
     console.log(doc);
   }); */
 
-  const user = await User.find({[`providers.${provider}`]: decoded.sub});
-  
+  let user = await User.findOne({[`providers.${provider}`]: decoded.sub});
+  console.log(user)
   if (!user) {
     user = new User({
         providers: {

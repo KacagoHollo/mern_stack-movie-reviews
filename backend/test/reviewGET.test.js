@@ -148,5 +148,70 @@ describe("requests to /api/review", () => {
       expect(response.body.length).toBe(3)
       expect(response.body[0].movieId).toBe("1234")
     });
+
+    it("should return only reviewer's reviews when quewwied", async () => {
+      // given
+      const user1 = new User({
+        username: "testUser",
+        providers: {
+            google: "888888",
+        },
+        reviews: [
+          {
+            movieId: "1234",
+            content: "nice movie but too long",
+            rating: 6.5,
+          },
+          {
+            movieId: "4321",
+            content: "bit short",
+            rating: 8.5,
+          },
+          {
+            movieId: "9876",
+            content: "just about right",
+            rating: 9.5,
+          }
+        ]     
+      });
+      await user1.save();
+      const user2 = new User({
+        username: "testUser2",
+        providers: {
+            google: "888889",
+        },
+        reviews: [
+          {
+            movieId: "5555",
+            content: "nice movie but too long",
+            rating: 6.5,
+          },
+          {
+            movieId: "7777",
+            content: "bit short",
+            rating: 8.5,
+          },
+          {
+            movieId: "6666",
+            content: "just about right",
+            rating: 9.5,
+          }
+        ]     
+      });
+      await user2.save();
+
+      const token = jwt.sign({userId: user1._id, username: user1.username}, process.env.TOKEN_SECRET, {expiresIn:'1h'})
+      //client.set('authorization', token);
+    
+      // when
+      const response = await client.get(`/api/review?reviewer=${user2._id}`);
+
+      // then
+      expect(response.statusCode).toBe(200);
+      expect(response.body.length).toBe(3)
+      expect(response.body[0].movieId).toBe("5555")
+    });
+
+
   });
 });
