@@ -29,10 +29,10 @@ router.get("/", auth({ block: false }), async (req, res) => {
 router.post("/", auth({ block: true }), async (req, res) => {
   // header: token
   // payload validation
-  if (!req.body.movieId || !req.body.content || !req.body.rating || !req.body.userId)
+  if (!req.body.movieId || !req.body.content || !req.body.rating || !req.body.movieTitle || !req.body.title)
     return res
       .status(400)
-      .send("Body must contain movieId, content and rating.");
+      .send("Body must contain movieId, movieTitle, title, content and rating.");
 
   console.log(res.locals.userId); // add new review by userId
   const user = await User.findById(res.locals.userId);
@@ -40,7 +40,7 @@ router.post("/", auth({ block: true }), async (req, res) => {
 
   // body: review
   user.reviews.push({
-    userId: req.body.userId,
+    userId: res.locals.userId,
     username: req.body.username,
     movieId: req.body.movieId,
     movieTitle: req.body.movieTitle,
@@ -65,15 +65,18 @@ router.patch("/:reviewId", auth({ block: true }), async (req, res) => {
     return res.status(400).send("No reviewId parameter found.");
 
   // payload validation
-  if (!req.body.movieId && !req.body.content && !req.body.rating && !req.body.movieTitle &&! req.body.title)
+  if (!req.body.movieId && !req.body.content && !req.body.rating && !req.body.movieTitle && !req.body.title && !req.body.username)
     return res
       .status(400)
       .send("Body must contain movieId, movieTitle, title, content or rating.");
-
+  
+  const user = await User.findById(res.locals.userId);
   if (!user) return res.status(404).send("User not found.");
 
   // update review
   const review = user.reviews.id(req.params.reviewId);
+  if (!review) return res.status(404).send("Review not found.");
+
   if (req.body.username) {
     review.username = req.body.username;
   };
