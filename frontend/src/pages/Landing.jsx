@@ -49,7 +49,8 @@ const Landing = ({ server, domain, setDomain }) => {
   const searchParam = async (query) => { 
     const param = {
       query: query
-    };
+    }
+  }
 
   let searchingMovies = []
 
@@ -116,15 +117,6 @@ const Landing = ({ server, domain, setDomain }) => {
       <button onClick={() => navigate("/movie")}>Movie</button>
       {/* <button onClick={() => landingFetch()}>Landing</button> */}
       <main>
-        {movieList.map((mov, i) => (
-          <div key={i} className="movie-list">
-            <img src={mov.picture} alt="f"/>
-            {/* <Link to={`/Movie/${movg.id}`}>
-                <img src={mov.picture} alt="A" /> */}
-            <h2>{mov.title}</h2>
-          </div>
-        ))}
-
       <div className="search">
         <input
           placeholder="Search"
@@ -144,9 +136,20 @@ const Landing = ({ server, domain, setDomain }) => {
             Search
           </button>
         </div>
+
+        {movieList.map((mov, i) => (
+          <div key={i} className="movie-list">
+            <img src={mov.picture} alt="f"/>
+            {/* <Link to={`/Movie/${movg.id}`}>
+                <img src={mov.picture} alt="A" /> */}
+            <h2>{mov.title}</h2>
+          </div>
+        ))}
+
+    
       </main>
     </div>
   );
 };
-}
+
 export default Landing;
