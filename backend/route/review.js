@@ -3,27 +3,26 @@ const User = require("../model/user");
 const auth = require("../middleware/auth");
 
 router.get("/", auth({ block: false }), async (req, res) => {
+  // NO QUERRIES YET
   // token or NOT token
   if (res.locals.userId) {
     const user = await User.findById(res.locals.userId);
     if (!user) return res.status(404).send("User not found.");
-    
+
     // return [all review] of the user if logged in
     // to "dashboard, profile page, private"
     return res.json(user.reviews);
-  };
+  }
   // return all review [] if NOT logged in
   // to "public"
   // queried both by movie and by user
-  const users = await User.find().where(req.query.reviewerId ? {_id : req.query.reviewerId} : null);
-
+  const users = await User.find().where(
+    req.query.reviewer ? _id === req.query.reviewer : null
+  );
   const reviews = [];
-  users.map(user => {reviews.push(...user.reviews)});
-
-  if (req.query.movieId) {
-    return res.json(reviews.filter(review => review.movieId === req.query.movieId));
-  };
-  
+  users.map((user) => {
+    reviews.push(...user.reviews);
+  });
   return res.json(reviews);
 });
 
@@ -31,10 +30,11 @@ router.post("/", auth({ block: true }), async (req, res) => {
   // header: token
   // payload validation
   if (!req.body.movieId || !req.body.content || !req.body.rating)
-    return res.status(400).send("Body must contain movieId, content and rating.");
+    return res
+      .status(400)
+      .send("Body must contain movieId, content and rating.");
 
-
-console.log(res.locals.userId)    // add new review by userId
+  console.log(res.locals.userId); // add new review by userId
   const user = await User.findById(res.locals.userId);
   if (!user) return res.status(404).send("User not found.");
 
@@ -57,11 +57,14 @@ router.patch("/:reviewId", auth({ block: true }), async (req, res) => {
   // header: token
 
   //request validation
-  if (!req.params.reviewId) return res.status(400).send("No reviewId parameter found.");
+  if (!req.params.reviewId)
+    return res.status(400).send("No reviewId parameter found.");
 
   // payload validation
   if (!req.body.movieId && !req.body.content && !req.body.rating)
-    return res.status(400).send("Body must contain movieId, content or rating.");
+    return res
+      .status(400)
+      .send("Body must contain movieId, content or rating.");
 
   // find user by userId and find review by reviewId
   const user = await User.findById(res.locals.userId);
@@ -91,7 +94,8 @@ router.delete("/:reviewId", auth({ block: true }), async (req, res) => {
   // header: token
 
   //request validation
-  if (!req.params.reviewId) return res.status(400).send("No reviewId parameter found.");
+  if (!req.params.reviewId)
+    return res.status(400).send("No reviewId parameter found.");
 
   // find user by userId and find review by reviewId
   const user = await User.findById(res.locals.userId);
