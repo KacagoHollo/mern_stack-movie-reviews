@@ -1,3 +1,4 @@
+require('dotenv').config();
 const router = require("express").Router();
 const User = require("../model/user");
 const httpModule = require("../utils/http");
@@ -9,7 +10,7 @@ const config = {
     clientId: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     redirectUri: process.env.GOOGLE_REDIRECT_URI,
-    tokenEndpoint: process.env.TOKEN_ENDPOINT,
+    tokenEndpoint: process.env.GOOGLE_TOKEN_URI,
   },
 };
 
@@ -37,14 +38,28 @@ router.post("/login", async (req, res) => {
   const decoded = jwt.decode(response.data.id_token);
   if (!decoded) return res.sendStatus(500);
 
-  const user = await User.findOneAndUpdate({[`providers.${provider}`]: decoded.sub}, {
+/*   const user = await User.findOneAndUpdate({[`providers.${provider}`]: decoded.sub}, {
     providers: {
         [provider]: decoded.sub,
     }
-  }, {new: true}, (err, doc) => {
+  }, {new: true} , (err, doc) => {
     if (err) return res.status(500).json({error: err});
     console.log(doc);
-  });
+  }); */
+
+  const user = await User.find({[`providers.${provider}`]: decoded.sub});
+  
+  if (!user) {
+    user = new User({
+        providers: {
+            [provider]: decoded.sub,
+        }
+    });
+    await user.save((error, user) => {
+      if (error) return res.status(500).json({error});
+      console.log(user);
+    });
+  };
 
   const token = jwt.sign({ userId: user._id, username: user.username }, process.env.TOKEN_SECRET, { expiresIn: "1h" });
   res.json(token);

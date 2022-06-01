@@ -11,8 +11,9 @@ const Redirect = ({ server, url }) => {
 		const code = searchParams.get("code");
 
 		try {
-			const response = await axios.post(`${server}/user/authenticate`, {
+			const response = await axios.post(`${server}/user/login`, {
 				code,
+				provider: "google",
 			});
 			sessionStorage.setItem("token", response.data);
 			message("User signed in.");
