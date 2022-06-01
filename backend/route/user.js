@@ -48,7 +48,6 @@ router.post("/login", async (req, res) => {
   }); */
 
   let user = await User.findOne({[`providers.${provider}`]: decoded.sub});
-  console.log(user)
   if (!user) {
     user = new User({
         providers: {
@@ -57,7 +56,6 @@ router.post("/login", async (req, res) => {
     });
     await user.save((error, user) => {
       if (error) return res.status(500).json({error});
-      console.log(user);
     });
   };
 
