@@ -19,3 +19,23 @@
 .actor-image {
   height: 200px;
 }
+
+main {
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+
+  gap:20px;
+}
+
+div.movie-list {
+  width: 20vw;
+
+  
+  margin-top: 20px;
+}
+
+div.movie-list img{
+  width: 20vw;
+}
