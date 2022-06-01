@@ -2,12 +2,8 @@ const router = require("express").Router();
 const User = require("../model/user");
 const auth = require("../middleware/auth");
 
-<<<<<<< HEAD
 router.get("/", auth({ block: false }), async (req, res) => {
   // NO QUERRIES YET
-=======
-router.get("/", auth({ block: false }), async (req, res) => { // NO QUERRIES YET
->>>>>>> 714c48f813e3b04bce2ec63c9ee0eb7cb5d7844a
   // token or NOT token
   if (res.locals.userId) {
     const user = await User.findById(res.locals.userId);

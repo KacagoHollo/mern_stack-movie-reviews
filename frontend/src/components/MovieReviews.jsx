@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import jwt_decode from "jwt-decode";
-<<<<<<< HEAD
 import { Rating } from "@mui/material";
 import { submitUsername, submitReview, getReviewByMovie } from "../api/review";
 
@@ -11,17 +10,11 @@ const MovieReviews = ({ movieId }) => {
   const [reviewRating, setReviewRating] = useState(0);
   const [reviews, setReviews] = useState([]);
   movieId = 694;
-=======
-
-const MovieReviews = ({ movieId }) => {
-  const [loggedin, setLoggedin] = useState(false);
->>>>>>> 714c48f813e3b04bce2ec63c9ee0eb7cb5d7844a
 
   const isLoggedIn = async () => {
     const token = sessionStorage.getItem("token");
     const decoded = await jwt_decode(token);
     console.log("USER-INFO: ", decoded);
-<<<<<<< HEAD
     decoded
       ? setLoggedin({ id: decoded.userId }, { username: decoded.username })
       : setLoggedin("");
@@ -30,15 +23,11 @@ const MovieReviews = ({ movieId }) => {
     console.log("FETCHIN!");
     const data = await getReviewByMovie(movieId);
     setReviews(data);
-=======
-    decoded ? setLoggedin(true) : setLoggedin(false);
->>>>>>> 714c48f813e3b04bce2ec63c9ee0eb7cb5d7844a
   };
 
   useEffect(() => {
     isLoggedIn();
   }, []);
-<<<<<<< HEAD
 
   return (
     <div className="movie-reviews-container">
@@ -110,9 +99,6 @@ const MovieReviews = ({ movieId }) => {
         ))}
     </div>
   );
-=======
-  return <div>{loggedin ? "LOGGED-IN" : "NOT-LOOGGED-IN"}</div>;
->>>>>>> 714c48f813e3b04bce2ec63c9ee0eb7cb5d7844a
 };
 
 export default MovieReviews;
