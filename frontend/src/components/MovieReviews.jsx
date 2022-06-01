@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import jwt_decode from "jwt-decode";
-
 import MovieReview from "./MovieReview";
 import MovieReviewAdd from "./MovieReviewAdd";
 import MovieReviewUsername from "./MovieReviewUsername";
@@ -8,12 +7,11 @@ import { getReviewByMovie } from "../api/review";
 
 const MovieReviews = ({ movieId, movieTitle }) => {
   const [loggedin, setLoggedin] = useState("");
-
   const [reviews, setReviews] = useState([]);
-  movieId = 694;
 
   const isLoggedIn = async () => {
     const token = sessionStorage.getItem("token");
+
     const decoded = await jwt_decode(token);
     console.log("USER-INFO: ", decoded);
     decoded
@@ -21,7 +19,6 @@ const MovieReviews = ({ movieId, movieTitle }) => {
       : setLoggedin("");
   };
   const fetchData = async () => {
-    console.log("FETCHIN!");
     const data = await getReviewByMovie(movieId);
     setReviews(data);
   };

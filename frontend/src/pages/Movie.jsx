@@ -3,10 +3,13 @@ import { movieDetails1, movieDetails2 } from "../api/movieDetails";
 import MovieDetails from "../components/MovieDetails";
 import MovieCrew from "../components/MovieCrew";
 import MovieReviews from "../components/MovieReviews";
+import { useSearchParams } from "react-router-dom";
 
-const Movie = ({ movieId }) => {
+const Movie = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [details1, setDetails1] = useState("");
   const [details2, setDetails2] = useState("");
+  const movieId = searchParams.get("id");
 
   const getMovieDetails = async (id) => {
     const resp1 = await movieDetails1(id);
@@ -18,7 +21,7 @@ const Movie = ({ movieId }) => {
   };
 
   useEffect(() => {
-    getMovieDetails(694);
+    getMovieDetails(movieId);
     //406,694
   }, []);
 

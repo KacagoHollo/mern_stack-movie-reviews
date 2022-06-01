@@ -70,16 +70,6 @@ export const patchReview = async (
   title,
   username
 ) => {
-  console.log(
-    "PATCH:",
-    id,
-    movieId,
-    content,
-    rating,
-    movieTitle,
-    title,
-    username
-  );
   try {
     const resp = await axios.patch(
       `http://localhost:4000/api/review/${id}`,
@@ -106,6 +96,7 @@ export const patchReview = async (
 };
 
 export const getReviewByMovie = async (movieId) => {
+  console.log("MOVIEID: ", movieId);
   try {
     const resp = await axios.get(
       `http://localhost:4000/api/review?movieId=${movieId}`

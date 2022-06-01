@@ -149,7 +149,7 @@ const Landing = ({ server, domain, setDomain }) => {
             <img
               src={mov.picture}
               alt="f"
-              onClick={() => navigate(`/movie/${mov.id}`)}
+              onClick={() => navigate(`/movie/?id=${mov.id}`)}
             />
             {/* <Link to={`/Movie/${movg.id}`}>
                 <img src={mov.picture} alt="A" /> */}
