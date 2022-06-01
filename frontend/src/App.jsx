@@ -19,7 +19,6 @@ function App() {
 		<Router>
 			<Header setDomain={setDomain} />
 			<Routes>
-				{/* <Route path="/" element={<Landing />}></Route> */}
         <Route
           path={`/`}
           exact
