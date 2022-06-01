@@ -19,25 +19,24 @@ function App() {
 		<Router>
 			<Header setDomain={setDomain} />
 			<Routes>
-				<Route
-					path={`/`}
-					exact
-					element={
-						<Landing server={server} domain={domain} setDomain={setDomain} />
-					}
+				{/* <Route path="/" element={<Landing />}></Route> */}
+        <Route
+          path={`/`}
+          exact
+          element={<Landing server={server} domain={domain} setDomain={setDomain}/>}
 				/>
 				<Route path="/movie" element={<Movie />}></Route>
 				<Route path="/profile" element={<Profile />}></Route>
 				<Route
-					path={`/login`}
-					exact
-					element={<Login server={server} client_id={client_id} url={url} />}
+          path={`/login`}
+          exact
+          element={<Login server={server} client_id={client_id} url={url} />}
 				/>
 				<Route
-					path={`/redirect`}
-					exact
-					element={<Redirect server={server} client_id={client_id} url={url} />}
-				/>
+          path={`/redirect`}
+          exact
+          element={<Redirect server={server} client_id={client_id} url={url} />}
+        />
 			</Routes>
 		</Router>
 	);
