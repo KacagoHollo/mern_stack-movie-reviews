@@ -43,13 +43,15 @@ const MovieReviews = ({ movieId, movieTitle }) => {
                 value={review.rating}
                 readOnly
               />
+              <h4>{review.title}</h4>
               <p>{review.content}</p>
+              <p>{review.username}</p>
               <p>{review.timeStamp}</p>
             </div>
           ))}
       </div>
       {loggedin &&
-        (loggedin.username ? (
+        (!loggedin.username ? (
           <div className="movie-reviews-create">
             <input
               name="review-title"

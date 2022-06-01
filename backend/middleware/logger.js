@@ -1,6 +1,6 @@
 const logger = (req, res, next) => {
-    // console.log('logging...');
-    next();
+  // console.log('logging...');
+  next();
 };
 
 module.exports = logger;

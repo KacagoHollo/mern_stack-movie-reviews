@@ -13,6 +13,7 @@ export const submitUsername = async (username) => {
         },
       }
     );
+    console.log("NEW TOKEN:", resp.data);
     return resp.data;
   } catch (err) {
     console.log(err);
@@ -35,6 +36,7 @@ export const submitReview = async (
         title: reviewTitle,
         content: reviewContent,
         rating: reviewRating,
+        userId: "blabla",
       },
       {
         headers: {
