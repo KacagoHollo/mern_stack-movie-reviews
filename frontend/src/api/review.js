@@ -49,6 +49,62 @@ export const submitReview = async (
   }
 };
 
+export const deleteReview = async (id) => {
+  try {
+    const resp = await axios.delete(`http://localhost:4000/api/review/${id}`, {
+      headers: {
+        authorization: sessionStorage.getItem("token"),
+      },
+    });
+    return resp.data;
+  } catch (err) {
+    console.log(err);
+  }
+};
+export const patchReview = async (
+  id,
+  movieId,
+  content,
+  rating,
+  movieTitle,
+  title,
+  username
+) => {
+  console.log(
+    "PATCH:",
+    id,
+    movieId,
+    content,
+    rating,
+    movieTitle,
+    title,
+    username
+  );
+  try {
+    const resp = await axios.patch(
+      `http://localhost:4000/api/review/${id}`,
+      {
+        movieId: movieId,
+        content: content,
+        rating: rating,
+        movieTitle: movieTitle,
+        title: title,
+        username: username,
+      },
+      {
+        headers: {
+          authorization: sessionStorage.getItem("token"),
+        },
+      }
+    );
+    console.log("YAAAAAAAAAAAAAAY!!");
+    window.location.reload();
+    return resp.data;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 export const getReviewByMovie = async (movieId) => {
   try {
     const resp = await axios.get(

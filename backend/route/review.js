@@ -29,10 +29,18 @@ router.get("/", auth({ block: false }), async (req, res) => {
 router.post("/", auth({ block: true }), async (req, res) => {
   // header: token
   // payload validation
-  if (!req.body.movieId || !req.body.content || !req.body.rating || !req.body.movieTitle || !req.body.title)
+  if (
+    !req.body.movieId ||
+    !req.body.content ||
+    !req.body.rating ||
+    !req.body.movieTitle ||
+    !req.body.title
+  )
     return res
       .status(400)
-      .send("Body must contain movieId, movieTitle, title, content and rating.");
+      .send(
+        "Body must contain movieId, movieTitle, title, content and rating."
+      );
 
   console.log(res.locals.userId); // add new review by userId
   const user = await User.findById(res.locals.userId);
@@ -65,11 +73,18 @@ router.patch("/:reviewId", auth({ block: true }), async (req, res) => {
     return res.status(400).send("No reviewId parameter found.");
 
   // payload validation
-  if (!req.body.movieId && !req.body.content && !req.body.rating && !req.body.movieTitle && !req.body.title && !req.body.username)
+  if (
+    !req.body.movieId &&
+    !req.body.content &&
+    !req.body.rating &&
+    !req.body.movieTitle &&
+    !req.body.title &&
+    !req.body.username
+  )
     return res
       .status(400)
       .send("Body must contain movieId, movieTitle, title, content or rating.");
-  
+
   const user = await User.findById(res.locals.userId);
   if (!user) return res.status(404).send("User not found.");
 
@@ -79,22 +94,22 @@ router.patch("/:reviewId", auth({ block: true }), async (req, res) => {
 
   if (req.body.username) {
     review.username = req.body.username;
-  };
+  }
   if (req.body.movieId) {
     review.movieId = req.body.movieId;
-  };
+  }
   if (req.body.movieTitle) {
     review.movieTitle = req.body.movieTitle;
-  };
+  }
   if (req.body.title) {
     review.title = req.body.title;
-  };
+  }
   if (req.body.content) {
     review.content = req.body.content;
-  };
+  }
   if (req.body.rating) {
     review.rating = req.body.rating;
-  };
+  }
 
   // save and return review
   user.save((err) => {
