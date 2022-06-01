@@ -47,6 +47,7 @@ const MovieReviews = ({ movieId, movieTitle }) => {
               <p>{review.content}</p>
               <p>{review.username}</p>
               <p>{review.timeStamp}</p>
+              {review.userId === loggedin.id && <button>Delete</button>}
             </div>
           ))}
       </div>

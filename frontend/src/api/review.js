@@ -36,7 +36,6 @@ export const submitReview = async (
         title: reviewTitle,
         content: reviewContent,
         rating: reviewRating,
-        userId: "blabla",
       },
       {
         headers: {
