@@ -29,7 +29,7 @@ const Movie = ({ movieId }) => {
       <h2>CAST AND CREW</h2>
       {details2 && <MovieCrew data={details2} />}
       <h2>REVIEWS</h2>
-      <MovieReviews movieId={movieId} />
+      <MovieReviews movieId={movieId} movieTitle={details1.title} />
     </div>
   );
 };

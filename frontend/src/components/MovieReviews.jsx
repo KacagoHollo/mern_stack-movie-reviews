@@ -3,9 +3,10 @@ import jwt_decode from "jwt-decode";
 import { Rating } from "@mui/material";
 import { submitUsername, submitReview, getReviewByMovie } from "../api/review";
 
-const MovieReviews = ({ movieId }) => {
+const MovieReviews = ({ movieId, movieTitle }) => {
   const [loggedin, setLoggedin] = useState("");
   const [username, setUsername] = useState("");
+  const [reviewTitle, setReviewTitle] = useState("");
   const [reviewContent, setReviewContent] = useState("");
   const [reviewRating, setReviewRating] = useState(0);
   const [reviews, setReviews] = useState([]);
@@ -27,6 +28,7 @@ const MovieReviews = ({ movieId }) => {
 
   useEffect(() => {
     isLoggedIn();
+    fetchData();
   }, []);
 
   return (
@@ -49,14 +51,13 @@ const MovieReviews = ({ movieId }) => {
       {loggedin &&
         (loggedin.username ? (
           <div className="movie-reviews-create">
-            <Rating
-              name="customized-10"
-              defaultValue={0}
-              max={10}
-              onChange={(e) => {
-                setReviewRating(e.target.value);
-              }}
-            />
+            <input
+              name="review-title"
+              id="review-title"
+              value={reviewTitle}
+              onChange={(e) => setReviewTitle(e.target.value)}
+              placeholder="review title"
+            ></input>
             <textarea
               name="review-content"
               id="review-content"
@@ -66,9 +67,23 @@ const MovieReviews = ({ movieId }) => {
               onChange={(e) => setReviewContent(e.target.value)}
               placeholder="review text"
             ></textarea>
+            <Rating
+              name="customized-10"
+              defaultValue={0}
+              max={10}
+              onChange={(e) => {
+                setReviewRating(e.target.value);
+              }}
+            />
             <button
               onClick={() => {
-                submitReview(movieId, reviewContent, reviewRating);
+                submitReview(
+                  movieId,
+                  movieTitle,
+                  reviewTitle,
+                  reviewContent,
+                  reviewRating
+                );
                 window.location.reload();
               }}
             >

@@ -18,14 +18,23 @@ export const submitUsername = async (username) => {
     console.log(err);
   }
 };
-export const submitReview = async (movieId, content, rating) => {
+
+export const submitReview = async (
+  movieId,
+  movieTitle,
+  reviewTitle,
+  reviewContent,
+  reviewRating
+) => {
   try {
     const resp = await axios.post(
       "http://localhost:4000/api/review",
       {
         movieId: movieId,
-        content: content,
-        rating: rating,
+        movieTitle: movieTitle,
+        title: reviewTitle,
+        content: reviewContent,
+        rating: reviewRating,
       },
       {
         headers: {
