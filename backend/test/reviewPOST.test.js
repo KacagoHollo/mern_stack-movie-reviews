@@ -59,7 +59,7 @@ describe("requests to /api/review", () => {
       });
       await user.save();
       
-      const token = jwt.sign({_id: user._id, username: user.username}, process.env.TOKEN_SECRET, {expiresIn:'1h'})
+      const token = jwt.sign({userId: user._id, username: user.username}, process.env.TOKEN_SECRET, {expiresIn:'1h'})
       client.set('authorization', token);
     
       // when
@@ -82,7 +82,7 @@ describe("requests to /api/review", () => {
       });
       await user.save();
       
-      const token = jwt.sign({_id: user._id, username: user.username}, process.env.TOKEN_SECRET, {expiresIn:'1h'})
+      const token = jwt.sign({userId: user._id, username: user.username}, process.env.TOKEN_SECRET, {expiresIn:'1h'})
       client.set('authorization', token);
     
       // when

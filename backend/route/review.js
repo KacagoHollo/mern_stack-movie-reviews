@@ -27,7 +27,8 @@ router.post("/", auth({ block: true }), async (req, res) => {
   if (!req.body.movieId || !req.body.content || !req.body.rating)
     return res.status(400).send("Body must contain movieId, content and rating.");
 
-  // add new review by userId
+
+console.log(res.locals.userId)    // add new review by userId
   const user = await User.findById(res.locals.userId);
   if (!user) return res.status(404).send("User not found.");
 

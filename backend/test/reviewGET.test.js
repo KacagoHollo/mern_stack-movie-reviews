@@ -138,7 +138,7 @@ describe("requests to /api/review", () => {
       });
       await user2.save();
 
-      const token = jwt.sign({_id: user1._id, username: user1.username}, process.env.TOKEN_SECRET, {expiresIn:'1h'})
+      const token = jwt.sign({userId: user1._id, username: user1.username}, process.env.TOKEN_SECRET, {expiresIn:'1h'})
       client.set('authorization', token);
     
       // when
