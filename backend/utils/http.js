@@ -12,9 +12,9 @@ const http = (baseurl) => {
       return response;
     } catch (error) {
       console.log(error);
-      if (!err.response) return res.sendStatus(500);
+      if (!err.response) return error;
 
-      return res.sendStatus(401);
+      return error.response;
     }
   };
 

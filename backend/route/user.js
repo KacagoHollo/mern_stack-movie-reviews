@@ -28,6 +28,7 @@ router.post("/login", async (req, res) => {
     client_secret: config[provider].clientSecret,
     redirect_uri: config[provider].redirectUri,
     grant_type: "authorization_code",
+    //"scope": "openid"
   });
 
   if (!response) return res.sendStatus(500);
@@ -36,22 +37,17 @@ router.post("/login", async (req, res) => {
   const decoded = jwt.decode(response.data.id_token);
   if (!decoded) return res.sendStatus(500);
 
-  let user = await User.findOne({ [`providers.${provider}`]: decoded.sub });
-  if (!user) {
-    user = new User({
-      username: req.body.username, // jon-e FE-rol username ezen a ponton?
-      providers: {
-        [`${provider}`]: decoded.sub,
-      },
-    });
+  const user = await User.findOneAndUpdate({[`providers.${provider}`]: decoded.sub}, {
+    providers: {
+        [provider]: decoded.sub,
+    }
+  }, {new: true}, (err, doc) => {
+    if (err) return res.status(500).json({error: err});
+    console.log(doc);
+  });
 
-    user.save().catch((err) => {
-      return res.status(500).json("User not saved");
-    });
-  }
-
-  const token = jwt.sign({ _id: user._id, username: user.username }, process.env.TOKEN_SECRET, { expiresIn: "1h" });
-  res.status(200).json(token);
+  const token = jwt.sign({ userId: user._id, username: user.username }, process.env.TOKEN_SECRET, { expiresIn: "1h" });
+  res.json(token);
 });
 
 module.exports = router;

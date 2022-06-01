@@ -8,7 +8,7 @@ const auth = ({block}) => (req, res, next) => {
             if (err) {
                 if (block) return res.sendStatus(401);
             } else {
-                res.locals.userId = user._id;
+                res.locals.userId = user.userId;
             };
         });
         next();
