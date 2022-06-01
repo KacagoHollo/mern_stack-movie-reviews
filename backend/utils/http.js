@@ -12,8 +12,8 @@ const http = (baseurl) => {
       return response;
     } catch (error) {
       if (!error.response) return error;
-      
-      console.log(error.response.data);
+
+      console.log("http module error:", error.response.data);
       return error.response;
     }
   };
