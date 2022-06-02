@@ -19,7 +19,7 @@ router.get("/", auth({ block: false }), async (req, res) => {
   const users = req.query.reviewerId
     ? await User.find({ _id: req.query.reviewerId })
     : req.query.reviewerName
-    ? await User.find({ username: req.query.reviewerName })
+    ? await User.find().where({username: new RegExp(`${req.query.reviewerName}`, "i")})
     : await User.find();
 
   const reviews = [];

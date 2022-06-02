@@ -42,6 +42,7 @@ router.post("/login", async (req, res) => {
   const user = await User.findOneAndUpdate({
     [`providers.${provider}`]: decoded.sub
   }, {
+    //username: decoded.email.split("@")[0],
     providers: {
         [provider]: decoded.sub,
     }
@@ -70,7 +71,6 @@ router.patch("/", auth({ block: true }), async (req, res) => {
 
   // update username
   user.username = req.body.username;
-
   // save and return review
   user.save((err) => {
     if (err) return res.status(500).send(err);
