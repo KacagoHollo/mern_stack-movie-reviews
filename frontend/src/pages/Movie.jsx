@@ -19,7 +19,7 @@ const Movie = () => {
     console.log("TOKEN: ", token);
 
     const decoded = await jwt_decode(token);
-    console.log("USER-INFO: ", decoded.username);
+    console.log("USER-INFO: ", decoded);
     decoded
       ? setLoggedin({ id: decoded.userId, username: decoded.username })
       : setLoggedin("");
