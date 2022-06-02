@@ -20,13 +20,14 @@ function App() {
     <Router>
       <Header setDomain={setDomain} />
       <Routes>
-        <Route
+        {/* <Route
           path={`/`}
           exact
           element={
             <Landing server={server} domain={domain} setDomain={setDomain} />
           }
-        />
+        /> */}
+        <Route path="/" element={<Landing />}></Route>
         <Route path="/movie" element={<Movie />}></Route>
         <Route path="/profile" element={<Profile />}></Route>
         <Route path="/search" element={<Search />}></Route>

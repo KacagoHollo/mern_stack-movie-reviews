@@ -86,20 +86,24 @@ const Landing = ({ server, domain, setDomain }) => {
       <button onClick={() => navigate("/movie")}>Movie</button> */}
       <main>
         <div className="search">
-          <TextField
-            variant="filled"
-            autoFocus
-            label="Find your movie!"
-            color="error"
-            placeholder="Search"
-            type="text"
-            value={query}
-            onKeyDown={handleKeyDown}
-            onChange={(e) => {
-              setSearchQuery(e.target.value);
-            }}
-            maxLength="200"
-          /> <Link to={`/search/${query}`}></Link>
+          <div className="search-input">
+            <TextField
+              variant="filled"
+              fullWidth
+              size="small"
+              autoFocus
+              label="Find your movie!"
+              color="error"
+              placeholder="Search"
+              type="text"
+              value={query}
+              onKeyDown={handleKeyDown}
+              onChange={(e) => {
+                setSearchQuery(e.target.value);
+              }}
+              maxLength="200"
+            /> <Link to={`/search/${query}`}></Link>
+          </div>
           <Button
             size="medium"
             sx={{borderRadius: "10px" }}

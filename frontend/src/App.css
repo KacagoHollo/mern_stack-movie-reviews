@@ -176,7 +176,7 @@ header {
 header nav {
   position: absolute;
   right: 0;
-  margin: 20px;
+  top: 10px;
 
   display: flex;
   flex-direction: column;
@@ -196,17 +196,16 @@ nav button {
   right: 40px;
 
   display: flex;
-  /* align-items: flex-end; */
   justify-content: center;
   flex-direction: column;
 }
 
 div.search {
   position: fixed;
-  top: 80px;
+  top: 85px;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 450px;
+  width: 350px;
   height: 20px;
 
   display: flex;
@@ -214,7 +213,11 @@ div.search {
   gap: 10px;
 }
 
-div.search Textfield {
+div.search-input {
+  width: 300px;
+}
+
+div.search-input Textfield {
   /* padding: 5px 10px; */
   font-family: "BIZ UDGothic", sans-serif;
   font-weight: 700;
@@ -313,4 +316,43 @@ div.search-container label {
   color: #d2d7c0;
   font-family: "BIZ UDGothic", sans-serif;
   font-weight: 700;
+}
+
+@media only screen and (max-width: 690px) {
+  div.search-input {
+      gap: 5px;
+      width: 200px;
+  }
+  Button {
+    transform: scale(0.8);
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  div.search-input {
+      width: 150px;
+  }
+  Button {
+    transform: scale(0.7);
+  }
+  header h1 {
+    transform: scale(0.8);
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  div.search-input {
+      width: 120px;
+      margin-left: 10px;
+  }
+  Button {
+    transform: scale(0.6);
+  }
+  header h1 {
+    transform: scale(0.7);
+    left: 10px;
+  }
+  nav button {
+    right: 20px;
+  }
 }
