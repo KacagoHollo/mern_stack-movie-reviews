@@ -73,10 +73,6 @@ router.patch("/:reviewId", auth({ block: true }), async (req, res) => {
   // update review by mongoId
   // header: token
 
-  //request validation
-  if (!req.params.reviewId)
-    return res.status(400).send("No reviewId parameter found.");
-
   // payload validation
   if (
     !req.body.movieId &&
@@ -126,10 +122,6 @@ router.patch("/:reviewId", auth({ block: true }), async (req, res) => {
 router.delete("/:reviewId", auth({ block: true }), async (req, res) => {
   // delete review by mongoId
   // header: token
-
-  //request validation
-  if (!req.params.reviewId)
-    return res.status(400).send("No reviewId parameter found.");
 
   // find user by userId and find review by reviewId
   const user = await User.findById(res.locals.userId);
