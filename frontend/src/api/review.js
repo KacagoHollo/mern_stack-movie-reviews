@@ -95,11 +95,20 @@ export const patchReview = async (
   }
 };
 
-export const getReviewByMovie = async (movieId) => {
+export const getReviewByMovie = async ({
+  movieId,
+  reviewerId,
+  movieTitle,
+  reviewerName,
+}) => {
   console.log("MOVIEID: ", movieId);
   try {
     const resp = await axios.get(
-      `http://localhost:4000/api/review?movieId=${movieId}`
+      `http://localhost:4000/api/review?movieId=${
+        movieId ? movieId : ""
+      }&movieName=${movieTitle ? movieTitle : ""}&reviewerId=${
+        reviewerId ? reviewerId : ""
+      }&reviewerName=${reviewerName ? reviewerName : ""}`
       /*      {
         headers: {
           authorization: sessionStorage.getItem("token"),

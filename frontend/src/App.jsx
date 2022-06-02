@@ -6,39 +6,43 @@ import Header from "./components/Header";
 import Login from "./components/Login";
 import Movie from "./pages/Movie";
 import Profile from "./pages/Profile";
+import Search from "./pages/Search";
 import Redirect from "./components/Redirect";
 
 function App() {
-	const server = "http://localhost:4000/api";
-	const url = "http://localhost:3000";
-	const client_id =
-		"49752783666-472eikn6usgtfi93ka8mt93qjpdbfd52.apps.googleusercontent.com";
-	const [domain, setDomain] = useState("");
+  const server = "http://localhost:4000/api";
+  const url = "http://localhost:3000";
+  const client_id =
+    "49752783666-472eikn6usgtfi93ka8mt93qjpdbfd52.apps.googleusercontent.com";
+  const [domain, setDomain] = useState("");
 
-	return (
-		<Router>
-			<Header setDomain={setDomain} />
-			<Routes>
+  return (
+    <Router>
+      <Header setDomain={setDomain} />
+      <Routes>
         <Route
           path={`/`}
           exact
-          element={<Landing server={server} domain={domain} setDomain={setDomain}/>}
-				/>
-				<Route path="/movie" element={<Movie />}></Route>
-				<Route path="/profile" element={<Profile />}></Route>
-				<Route
+          element={
+            <Landing server={server} domain={domain} setDomain={setDomain} />
+          }
+        />
+        <Route path="/movie" element={<Movie />}></Route>
+        <Route path="/profile" element={<Profile />}></Route>
+        <Route path="/search" element={<Search />}></Route>
+        <Route
           path={`/login`}
           exact
           element={<Login server={server} client_id={client_id} url={url} />}
-				/>
-				<Route
+        />
+        <Route
           path={`/redirect`}
           exact
           element={<Redirect server={server} client_id={client_id} url={url} />}
         />
-			</Routes>
-		</Router>
-	);
+      </Routes>
+    </Router>
+  );
 }
 
 export default App;

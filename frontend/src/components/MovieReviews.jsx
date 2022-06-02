@@ -19,7 +19,7 @@ const MovieReviews = ({ movieId, movieTitle }) => {
       : setLoggedin("");
   };
   const fetchData = async () => {
-    const data = await getReviewByMovie(movieId);
+    const data = await getReviewByMovie({ movieId });
     setReviews(data);
   };
 
@@ -36,7 +36,7 @@ const MovieReviews = ({ movieId, movieTitle }) => {
         ))}
 
       {loggedin &&
-        (!loggedin.username ? (
+        (loggedin.username ? (
           <MovieReviewAdd movieId={movieId} movieTitle={movieTitle} />
         ) : (
           <MovieReviewUsername />
