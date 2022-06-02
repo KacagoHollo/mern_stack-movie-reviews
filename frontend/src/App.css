@@ -1,4 +1,45 @@
-.movie-details-container {
+@import url('https://fonts.googleapis.com/css2?family=BIZ+UDGothic:wght@400;700&family=League+Gothic&family=Pathway+Gothic+One&display=swap');
+
+
+* {
+  margin: 0;
+  padding: 0;
+  /* border: 0; */
+  /* outline: none; */
+  box-sizing: border-box;
+
+  /* background: transparent; */
+
+  /* font-family: inherit; */
+
+  text-decoration: none;
+}
+
+/* ol, ul, li {
+  list-style:none;
+  display:block;
+}
+table {
+  border-collapse:collapse;
+  border-spacing:0
+}
+a img {
+  border: none
+} */
+
+button,
+a {
+  cursor: pointer;
+  /* color: inherit; */
+}
+
+textarea {
+  resize: none;
+}
+
+/* end of css reset */
+
+movie-details-container {
   display: flex;
   border-radius: 10px;
   background: rgba(0, 0, 0, 80%);
@@ -54,28 +95,135 @@
   border-radius: 3px;
 } */
 
+h1, h2 {
+  color: #2c2b3d;
+  text-shadow: 0.2px 0.2px #4d0006;
+}
+
+h1 {
+  font-family: 'League Gothic', sans-serif;
+  font-weight: 400;
+  letter-spacing: 1.5px;
+}
+
+h2 {
+  font-family: 'Pathway Gothic One', sans-serif;
+}
+
+body {
+  background: rgb(210,215,192);
+  background: radial-gradient(circle, rgba(210,215,192,1) 14%, rgba(164,3,34,1) 61%, rgba(77,0,6,1) 100%); 
+}
+
+header {
+  position: fixed;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  /* flex-wrap: wrap; */
+
+  width: 100vw;
+  height: 120px;
+
+  background: rgb(210,215,192);
+  background: radial-gradient(circle, rgba(210,215,192,1) 14%, rgba(164,3,34,0.8) 61%, rgba(77,0,6,0.8) 100%);
+}
+
+header nav {
+  position: absolute;
+  right: 0;
+  margin: 20px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 5px;
+}
+
+header h1 {
+  position: absolute;
+  top: 20px;
+  left: 80px;
+}
+
+nav button {
+  position: absolute;
+  right: 40px;
+
+  display: flex;
+  /* align-items: flex-end; */
+  justify-content: center;
+  flex-direction: column;
+
+}
+
+div.search {
+  position: fixed;
+  top: 80px;
+  left: 25%;
+  transform: translate(-50%, -50%);
+}
+
+div.search input {
+  padding: 5px 20px;
+  font-family: 'BIZ UDGothic', sans-serif;
+}
 main {
   width: 100vw;
   height: 100vh;
 
+  padding: 0 10px 0 10px;
+
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
   flex-wrap: wrap;
 
-  gap: 20px;
+  /* gap:20px; */
 }
 
 div.movie-list {
-  width: 20vw;
-  height: 500px;
-  margin-top: 20px;
+  width: 200px;
+  height: 300px;
+  margin: 140px 30px 0 0;
 }
 
+
 div.movie-list img {
-  width: 20vw;
+  width: 100%;
+  border-radius: 10px;
+
+  box-shadow: 4px 4px rgba(77, 0, 6, 0.8);
+
+  cursor: pointer;
 }
 
 div.movie-list h2 {
   text-align: center;
+  margin-top: 10px;
+}
+
+Button {
+  font-family: 'BIZ UDGothic', sans-serif;
+}
+nav a Button {
+  font-family: 'BIZ UDGothic', sans-serif;
+  width: 85px;
+  padding: 5px;
+}
+
+
+Button.login {
+
+}
+
+div#root {
+  position: relative;
+}
+
+div.options {
+  position: absolute;
 }

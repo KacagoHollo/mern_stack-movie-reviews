@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, Link, useParams } from "react-router-dom";
 // import message from "../components/message";
+import Button from '@mui/material/Button'
 const axios = require("axios");
 
 const Landing = ({ server, domain, setDomain }) => {
@@ -80,8 +81,8 @@ const Landing = ({ server, domain, setDomain }) => {
 
   return (
     <div>
-      <button onClick={() => testFetch()}>TEST</button>
-      <button onClick={() => navigate("/movie")}>Movie</button>
+      {/* <button onClick={() => testFetch()}>TEST</button>
+      <button onClick={() => navigate("/movie")}>Movie</button> */}
       <main>
         <div className="search">
           <input
@@ -94,14 +95,18 @@ const Landing = ({ server, domain, setDomain }) => {
             }}
             maxLength="200"
           /> <Link to={`/search/${query}`}></Link>
-          <button
+          <Button
+            size="small"
+            sx={{ mt: 6, mb: 6, borderRadius: "10px" }}
+            color='error'
+            variant="contained"
             onClick={() => {
               searchFetch();
             }}
             disabled={searchQuery.length < 1}
           >
             Search
-          </button>
+          </Button>
         </div>
 
         { searchQuery.length < 1 ?
