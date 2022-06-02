@@ -38,7 +38,8 @@ const Header = ({ setDomain }) => {
         )}
         {sessionStorage.getItem("token") && (
           <Button
-          sx={{ mt: 5, mb: 5, borderRadius: "10px" }}
+          sx={{borderRadius: "10px" }}
+          size="small"
           color='error'
           variant="contained"
             className="nav-button"
