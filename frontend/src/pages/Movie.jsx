@@ -45,8 +45,9 @@ const Movie = () => {
 
   return (
     <div>
-      <h2>MOVIE DETAILS</h2>
-      {details1 && <MovieDetails data={details1} />}
+      {details1 && details2 && (
+        <MovieDetails data={details1} data2={details2} />
+      )}
       <h2>CAST AND CREW</h2>
       {details2 && <MovieCrew data={details2} />}
       <h2>REVIEWS</h2>
