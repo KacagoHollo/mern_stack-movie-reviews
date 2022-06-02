@@ -41,6 +41,7 @@ textarea {
 
 movie-details-container {
   display: flex;
+  border-radius: 10px;
   background: rgba(0, 0, 0, 80%);
   color: whitesmoke;
 }

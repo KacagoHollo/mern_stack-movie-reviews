@@ -9,6 +9,7 @@ const MovieReviewAdd = ({ movieId, movieTitle, username }) => {
   return (
     <>
       <div className="movie-reviews-create">
+        <h3>Post a review:</h3>
         <input
           name="review-title"
           id="review-title"
