@@ -112,6 +112,7 @@ h2 {
 body {
   background: rgb(210,215,192);
   background: radial-gradient(circle, rgba(210,215,192,1) 14%, rgba(164,3,34,1) 61%, rgba(77,0,6,1) 100%); 
+  background-attachment: fixed;
 }
 
 header {
@@ -161,18 +162,23 @@ nav button {
 
 div.search {
   position: fixed;
-  top: 80px;
-  left: 25%;
+  top: 70px;
+  left: 50%;
   transform: translate(-50%, -50%);
+  width: 300px;
+  height: 20px;
 }
 
-div.search input {
-  padding: 5px 20px;
+div.search Textfield{
+  /* padding: 5px 10px; */
   font-family: 'BIZ UDGothic', sans-serif;
+  font-weight: 700;
 }
+
+
 main {
   width: 100vw;
-  height: 100vh;
+  /* height: 100vh; */
 
   padding: 0 10px 0 10px;
 
@@ -225,4 +231,14 @@ div#root {
 
 div.options {
   position: absolute;
+  top: 180px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  text-align: center;
+}
+
+div.options h2 {
+  margin-top: 40px;
+  margin-bottom: 20px;
 }

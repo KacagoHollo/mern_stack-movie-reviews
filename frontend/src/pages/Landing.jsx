@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, Link, useParams } from "react-router-dom";
 // import message from "../components/message";
 import Button from '@mui/material/Button'
+import TextField from '@mui/material/TextField';
 const axios = require("axios");
 
 const Landing = ({ server, domain, setDomain }) => {
@@ -85,7 +86,11 @@ const Landing = ({ server, domain, setDomain }) => {
       <button onClick={() => navigate("/movie")}>Movie</button> */}
       <main>
         <div className="search">
-          <input
+          <TextField
+          variant="filled"
+            autoFocus
+            label="Find your movie!"
+            color="warning"
             placeholder="Search"
             type="text"
             value={query}
@@ -97,7 +102,7 @@ const Landing = ({ server, domain, setDomain }) => {
           /> <Link to={`/search/${query}`}></Link>
           <Button
             size="small"
-            sx={{ mt: 6, mb: 6, borderRadius: "10px" }}
+            sx={{ mt: 2, mb: 8, borderRadius: "10px" }}
             color='error'
             variant="contained"
             onClick={() => {
