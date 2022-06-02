@@ -15,6 +15,7 @@ const Header = ({ setDomain }) => {
           size="small"
           color="secondary"
           variant="contained"
+          sx={{ borderRadius: "10px" }}
           >Home</Button>
         </Link>
         <Link to={`/search`}>
@@ -22,6 +23,7 @@ const Header = ({ setDomain }) => {
           size="small"
           color="secondary"
           variant="contained"
+          sx={{ borderRadius: "10px" }}
           >Reviews</Button>
         </Link>
         {!sessionStorage.getItem("token") && (
@@ -30,6 +32,7 @@ const Header = ({ setDomain }) => {
             size="small"
             color="warning"
             variant="contained"
+            sx={{ borderRadius: "10px" }}
             className="login">Log in</Button>
           </Link>
         )}
