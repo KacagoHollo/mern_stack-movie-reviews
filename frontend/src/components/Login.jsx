@@ -16,7 +16,11 @@ const Login = ({ server, client_id, url }) => {
 	return (
 		<div className="options">
 			<h2>Log in options:</h2>
-			<Button onClick={googleLogin}>Google Login</Button>
+			<Button 
+			color='error'
+            variant="contained"
+			sx={{ borderRadius: "10px" }}
+			onClick={googleLogin}>Google Login</Button>
 		</div>
 	);
 };

@@ -149,6 +149,7 @@ body {
     rgba(164, 3, 34, 1) 61%,
     rgba(77, 0, 6, 1) 100%
   );
+  background-attachment: fixed;
 }
 
 header {
@@ -203,17 +204,37 @@ nav button {
 div.search {
   position: fixed;
   top: 80px;
-  left: 25%;
+  left: 50%;
   transform: translate(-50%, -50%);
+  width: 450px;
+  height: 20px;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+div.search Textfield {
+  /* padding: 5px 10px; */
+  font-family: "BIZ UDGothic", sans-serif;
+  font-weight: 700;
 }
 
 div.search input {
-  padding: 5px 20px;
+  color: #4d0006;
   font-family: "BIZ UDGothic", sans-serif;
+  font-weight: 700;
 }
+
+div.search label {
+  color: #4d0006;
+  font-family: "BIZ UDGothic", sans-serif;
+  font-weight: 700;
+}
+
 main {
   width: 100vw;
-  height: 100vh;
+  /* height: 100vh; */
 
   padding: 0 10px 0 10px;
 
@@ -254,13 +275,42 @@ nav a Button {
   padding: 5px;
 }
 
-Button.login {
-}
-
 div#root {
   position: relative;
 }
 
 div.options {
   position: absolute;
+  top: 180px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  text-align: center;
+}
+
+div.options h2 {
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+div.search-container {
+  position: absolute;
+  top: 180px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  text-align: center;
+  display: flex;
+  gap: 20px;
+}
+
+div.search-container input {
+  color: #d2d7c0;
+  font-family: "BIZ UDGothic", sans-serif;
+  font-weight: 700;
+}
+div.search-container label {
+  color: #d2d7c0;
+  font-family: "BIZ UDGothic", sans-serif;
+  font-weight: 700;
 }
