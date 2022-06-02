@@ -16,31 +16,32 @@ router.get("/", auth({ block: false }), async (req, res) => {
   // return all review [] if NOT logged in
   // to "public"
   // queried both by movie and by user
-  const users = req.query.reviewerId
+  const users = !req.query.reviewerId && req.query.reviewerId !== "" && !req.query.reviewerName && req.query.reviewerName !== "" 
+    ? await User.find() : req.query.reviewerId && req.query.reviewerId !== ""
     ? await User.find({ _id: req.query.reviewerId })
-    : req.query.reviewerName
-    ? await User.find().where({
-        username: new RegExp(`${req.query.reviewerName}`, "i"),
-      })
-    : await User.find();
+    : await User.find().where({
+      username: new RegExp(`${req.query.reviewerName}`, "i"),
+    });
 
   const reviews = [];
   users.map((user) => {
     reviews.push(...user.reviews);
   });
 
-  if (req.query.movieId) {
+  if (req.query.movieId && req.query.movieId !== "") {
     const review = reviews.filter(
       (review) => review.movieId === req.query.movieId
     );
     return res.json(review);
-  }
+  };
 
-  if (req.query.movieTitle) {
+  if (req.query.movieTitle && req.query.movieTitle !== "") {
     const pattern = new RegExp(`${req.query.movieTitle}`, "i");
-    const review = reviews.filter((review) => pattern.test(review.movieTitle));
+    const review = reviews.filter(review => pattern.test(review.movieTitle));
     return res.json(review);
-  }
+  };
+
+  res.json(reviews);
 });
 
 router.post("/", auth({ block: true }), async (req, res) => {

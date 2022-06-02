@@ -276,6 +276,7 @@ describe("requests to /api/review", () => {
     
       // when
       const response = await client.get(`/api/review?reviewerId=${user2.id}`);
+      console.log(response.data)
 
       // then
       expect(response.statusCode).toBe(200);
