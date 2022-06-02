@@ -46,8 +46,10 @@ const MovieReview = ({ review, loggedin }) => {
         </>
       )}
 
-      <p>{review.username}</p>
-      <p>{review.timeStamp}</p>
+      <p>written by {review.username}</p>
+      <p>
+        {review.timeStamp.slice(0, 10) + " " + review.timeStamp.slice(11, 16)}
+      </p>
       {review.userId === loggedin.id && (
         <>
           <button

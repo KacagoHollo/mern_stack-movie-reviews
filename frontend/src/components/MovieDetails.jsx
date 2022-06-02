@@ -19,6 +19,7 @@ const MovieDetails = ({ data, data2 }) => {
       style={{
         backgroundImage: `url(${backgroundPic})`,
         backgroundSize: "cover",
+        borderRadius: "10px",
       }}
     >
       <div className="movie-details-container">
