@@ -87,10 +87,10 @@ const Landing = ({ server, domain, setDomain }) => {
       <main>
         <div className="search">
           <TextField
-          variant="filled"
+            variant="filled"
             autoFocus
             label="Find your movie!"
-            color="warning"
+            color="error"
             placeholder="Search"
             type="text"
             value={query}
@@ -101,8 +101,8 @@ const Landing = ({ server, domain, setDomain }) => {
             maxLength="200"
           /> <Link to={`/search/${query}`}></Link>
           <Button
-            size="small"
-            sx={{ mt: 2, mb: 8, borderRadius: "10px" }}
+            size="medium"
+            sx={{borderRadius: "10px" }}
             color='error'
             variant="contained"
             onClick={() => {

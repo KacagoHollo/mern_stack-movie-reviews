@@ -163,15 +163,31 @@ nav button {
 
 div.search {
   position: fixed;
-  top: 70px;
+  top: 80px;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 300px;
+  width: 450px;
   height: 20px;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-div.search Textfield{
+div.search Textfield {
   /* padding: 5px 10px; */
+  font-family: 'BIZ UDGothic', sans-serif;
+  font-weight: 700;
+}
+
+div.search input {
+  color: #4d0006;
+  font-family: 'BIZ UDGothic', sans-serif;
+  font-weight: 700;
+}
+
+div.search label {
+  color: #4d0006;
   font-family: 'BIZ UDGothic', sans-serif;
   font-weight: 700;
 }
@@ -221,11 +237,6 @@ nav a Button {
   padding: 5px;
 }
 
-
-Button.login {
-
-}
-
 div#root {
   position: relative;
 }
@@ -242,4 +253,26 @@ div.options {
 div.options h2 {
   margin-top: 40px;
   margin-bottom: 20px;
+}
+
+div.search-container {
+  position: absolute;
+  top: 180px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  text-align: center;
+  display: flex;
+  gap: 20px;
+}
+
+div.search-container input {
+  color: #d2d7c0;
+  font-family: 'BIZ UDGothic', sans-serif;
+  font-weight: 700;
+}
+div.search-container label {
+  color: #d2d7c0;
+  font-family: 'BIZ UDGothic', sans-serif;
+  font-weight: 700;
 }

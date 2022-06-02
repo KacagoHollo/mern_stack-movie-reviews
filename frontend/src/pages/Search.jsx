@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import jwt_decode from "jwt-decode";
 import MovieReview from "../components/MovieReview";
 import { getReviewByMovie } from "../api/review";
+import TextField from '@mui/material/TextField';
 
 const Search = () => {
   const [loggedin, setLoggedin] = useState("");
@@ -34,16 +35,24 @@ const Search = () => {
   return (
     <div>
       <div className="search-container">
-        <input
+        <TextField
+          variant="outlined"
+          autoFocus
+          label="Find your review!"
+          color="secondary"
           className="search-input"
           type="text"
           value={movieTitle}
-          placeholder="movie title"
+          placeholder="Movie title"
           onChange={(e) => {
             setMovieTitle(e.target.value);
           }}
-        ></input>
-        <input
+        ></TextField>
+        <TextField
+          variant="outlined"
+          autoFocus
+          label="Find your review!"
+          color="secondary"
           className="search-input"
           type="text"
           value={reviewerName}
@@ -51,7 +60,7 @@ const Search = () => {
           onChange={(e) => {
             setReviewerName(e.target.value);
           }}
-        ></input>
+        ></TextField>
       </div>
       <div className="search-review-container">
         {reviews &&
