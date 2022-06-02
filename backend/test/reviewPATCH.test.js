@@ -137,7 +137,6 @@ describe("requests to /api/review", () => {
       expect(response.statusCode).toBe(404);
     });
 
-
     it("should return 200 with sufficient body", async () => {
       // given
       const user = new User({

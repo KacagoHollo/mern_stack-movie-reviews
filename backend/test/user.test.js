@@ -3,6 +3,7 @@ const app = require('../app')
 const mockserver = require('supertest');
 const User = require('../model/user');
 const { startVirtualDb, stopVirtualDb, clearUsers } = require("./util/inMemoryDb");
+const jwt = require('jsonwebtoken');
 
 describe("requests to /api/review", () => {
     let connection;
@@ -74,4 +75,122 @@ describe("requests to /api/review", () => {
         });
 
     });
+
+    describe("/api/user PATCH request", () => {
+
+        it("should return 401 without authorization", async () => {
+          // given
+        
+          // when
+          const response = await client.patch("/api/user");
+    
+          // then
+          expect(response.statusCode).toBe(401);
+        });
+    
+        it("should return 400 with insufficient body", async () => {
+          // given      
+          const user = new User({
+            username: "testUser",
+            providers: {
+                google: "888888",
+            },
+            reviews: [
+              {
+                "username": "archie@tombacz",
+                "userId": `"987654321"`,
+                "movieId": "11111",
+                "movieTitle": "Shining",
+                "title": "Scary movie",
+                "content": "Loremc3",
+                "rating": 5,
+              },
+              {
+                "username": "archie@tombacz",
+                "userId": "987654321",
+                "movieId": "22222",
+                "movieTitle": "Shining",
+                "title": "Scary movie",
+                "content": "Loremc3",
+                "rating": 5,
+              },
+              {
+                "username": "archie@tombacz",
+                "userId": "987654321",
+                "movieId": "33333",
+                "movieTitle": "Shining",
+                "title": "Scary movie",
+                "content": "Loremc3",
+                "rating": 5,
+              }
+            ]     
+          });
+          await user.save();
+    
+          const token = jwt.sign({userId: user._id, username: user.username}, process.env.TOKEN_SECRET, {expiresIn:'1h'})
+          client.set('authorization', token);
+        
+          // when
+          const response = await client.patch("/api/user").send({});
+    
+          // then
+          expect(response.statusCode).toBe(400);
+        });
+    
+        it("should return 200 with sufficient body", async () => {
+          // given
+          const user = new User({
+            username: "testUser",
+            providers: {
+                google: "888888",
+            },
+            reviews: [
+              {
+                "username": "archie@tombacz",
+                "userId": `"987654321"`,
+                "movieId": "11111",
+                "movieTitle": "Shining",
+                "title": "Scary movie",
+                "content": "Loremc3",
+                "rating": 5,
+              },
+              {
+                "username": "archie@tombacz",
+                "userId": "987654321",
+                "movieId": "22222",
+                "movieTitle": "Shining",
+                "title": "Scary movie",
+                "content": "Loremc3",
+                "rating": 5,
+              },
+              {
+                "username": "archie@tombacz",
+                "userId": "987654321",
+                "movieId": "33333",
+                "movieTitle": "Shining",
+                "title": "Scary movie",
+                "content": "Loremc3",
+                "rating": 5,
+              }
+            ]     
+          });
+          await user.save();
+    
+          const token = jwt.sign({userId: user._id, username: user.username}, process.env.TOKEN_SECRET, {expiresIn:'1h'})
+          client.set('authorization', token);
+    
+          // when
+          const response = await client.patch(`/api/user`).send({
+            username: "mausp7"
+          });
+    
+          // then
+          expect(response.statusCode).toBe(200);
+          
+          const dbUser = await User.findById(user._id);
+          expect(dbUser.username).toBe("mausp7");
+        });
+    
+    });
+    
 });
