@@ -36,7 +36,7 @@ const MovieReviews = ({ movieId, movieTitle }) => {
         ))}
 
       {loggedin &&
-        (loggedin.username ? (
+        (!loggedin.username ? (
           <MovieReviewAdd movieId={movieId} movieTitle={movieTitle} />
         ) : (
           <MovieReviewUsername />

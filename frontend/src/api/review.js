@@ -1,6 +1,8 @@
 const axios = require("axios");
 
 export const submitUsername = async (username) => {
+  console.log("USERNAME: ", username);
+  console.log("Token: ", sessionStorage.getItem("token"));
   try {
     const resp = await axios.patch(
       "http://localhost:4000/api/user",
@@ -16,7 +18,7 @@ export const submitUsername = async (username) => {
     console.log("NEW TOKEN:", resp.data);
     return resp.data;
   } catch (err) {
-    console.log(err);
+    console.log("ERROR:", err);
   }
 };
 
@@ -106,7 +108,7 @@ export const getReviewByMovie = async ({
     const resp = await axios.get(
       `http://localhost:4000/api/review?movieId=${
         movieId ? movieId : ""
-      }&movieName=${movieTitle ? movieTitle : ""}&reviewerId=${
+      }&movieTitle=${movieTitle ? movieTitle : ""}&reviewerId=${
         reviewerId ? reviewerId : ""
       }&reviewerName=${reviewerName ? reviewerName : ""}`
       /*      {

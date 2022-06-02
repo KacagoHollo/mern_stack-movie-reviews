@@ -50,30 +50,36 @@ router.post("/login", async (req, res) => {
     new: true
   });
 
-  const token = jwt.sign({ userId: user._id, username: user.username }, process.env.TOKEN_SECRET, { expiresIn: "1h" });
+  const token = jwt.sign(
+    { userId: user._id, username: user.username },
+    process.env.TOKEN_SECRET,
+    { expiresIn: "1h" }
+  );
   res.json(token);
 });
 
 router.patch("/", auth({ block: true }), async (req, res) => {
   // header: token
   // payload validation
-  if (
-    !req.body.username
-  )
-    return res
-      .status(400)
-      .send("Body must contain username.");
+
+  if (!req.body.username)
+    return res.status(400).send("Body must contain username.");
 
   const user = await User.findById(res.locals.userId);
   if (!user) return res.status(404).send("User not found.");
 
   // update username
-  user.username = req.body.username
+  user.username = req.body.username;
 
   // save and return review
   user.save((err) => {
     if (err) return res.status(500).send(err);
-    res.sendStatus(200);
+    const token = jwt.sign(
+      { userId: user._id, username: user.username },
+      process.env.TOKEN_SECRET,
+      { expiresIn: "1h" }
+    );
+    res.json(token);
   });
 });
 
