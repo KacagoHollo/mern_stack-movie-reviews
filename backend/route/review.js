@@ -19,7 +19,7 @@ router.get("/", auth({ block: false }), async (req, res) => {
   const users = req.query.reviewerId
     ? await User.find({ _id: req.query.reviewerId })
     : req.query.reviewerName
-    ? await User.find({ username: req.query.reviewerName })
+    ? await User.find().where({username: new RegExp(`${req.query.reviewerName}`, "i")})
     : await User.find();
 
   const reviews = [];
@@ -35,13 +35,13 @@ router.get("/", auth({ block: false }), async (req, res) => {
   }
 
   if (req.query.movieTitle) {
+    const pattern = new RegExp(`${req.query.movieTitle}`, "i")
     const review = reviews.filter(
-      (review) => review.movieTitle === req.query.movieTitle
+      (review) => pattern.test(review.movieTitle)
     );
     return res.json(review);
   }
 
-  return res.json(reviews);
 });
 
 router.post("/", auth({ block: true }), async (req, res) => {

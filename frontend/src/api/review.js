@@ -19,9 +19,9 @@ export const submitUsername = async (username) => {
     console.log("NEW TOKEN:", resp.data);
     const decoded = await jwt_decode(resp.data);
     console.log("DECODE: ", decoded);
-    sessionStorage.removeItem("token");
-    sessionStorage.setItem("token", resp.data);
+    sessionStorage.updateItem("token", resp.data);
     return resp.data;
+
   } catch (err) {
     console.log("ERROR:", err);
   }
