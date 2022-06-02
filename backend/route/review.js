@@ -16,7 +16,7 @@ router.get("/", auth({ block: false }), async (req, res) => {
   // return all review [] if NOT logged in
   // to "public"
   // queried both by movie and by user
-  const users = req.query.reviewerId ? await User.find({_id: req.query.reviewerId}) : await User.find();
+  const users = req.query.reviewerId ? await User.find({_id: req.query.reviewerId}) : req.query.reviewerName ? await User.find({username: req.query.reviewerName}) : await User.find();
 
   const reviews = [];
   users.map((user) => {
@@ -27,7 +27,11 @@ router.get("/", auth({ block: false }), async (req, res) => {
     const review = reviews.filter(review => review.movieId === req.query.movieId);
     return res.json(review);
   };
-  
+  if (req.query.movieTitle) {
+    const review = reviews.filter(review => review.movieTitle === req.query.movieTitle);
+    return res.json(review);
+  };
+
   return res.json(reviews);
 });
 
