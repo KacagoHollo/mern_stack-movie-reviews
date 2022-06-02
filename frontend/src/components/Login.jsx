@@ -1,4 +1,5 @@
 import { React } from "react";
+import Button from '@mui/material/Button'
 
 const Login = ({ server, client_id, url }) => {
 	const googleLogin = async () => {
@@ -13,9 +14,9 @@ const Login = ({ server, client_id, url }) => {
 	};
 
 	return (
-		<div>
+		<div className="options">
 			<h2>Log in options:</h2>
-			<button onClick={googleLogin}>Google Login</button>
+			<Button onClick={googleLogin}>Google Login</Button>
 		</div>
 	);
 };
