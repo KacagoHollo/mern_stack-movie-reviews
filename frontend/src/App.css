@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=BIZ+UDGothic:wght@400;700&family=League+Gothic&family=Pathway+Gothic+One&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=BIZ+UDGothic:wght@400;700&family=League+Gothic&family=Pathway+Gothic+One&display=swap");
 
 * {
   margin: 0;
@@ -7,6 +6,7 @@
   /* border: 0; */
   /* outline: none; */
   box-sizing: border-box;
+  font-family: "BIZ UDGothic", sans-serif;
 
   /* background: transparent; */
 
@@ -39,7 +39,12 @@ textarea {
 
 /* end of css reset */
 
-movie-details-container {
+.movie-page {
+  /* padding-top: 150px; */
+}
+
+.movie-details-container {
+  height: 100%;
   display: flex;
   border-radius: 10px;
   background: rgba(0, 0, 0, 80%);
@@ -47,17 +52,23 @@ movie-details-container {
 }
 
 .movie-details-image {
-  max-width: 30%;
-  box-shadow: 25px 3px 23px -4px rgba(0, 0, 0, 0.56);
+  height: calc(100% - 140px);
+  border-radius: 0 50px 0 0;
+  margin-top: 140px;
+  /*  box-shadow: 25px 3px 23px -4px rgba(0, 0, 0, 0.56); */
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px,
+    rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px,
+    rgba(0, 0, 0, 0.07) 0px 16px 16px;
 }
 
 .movie-details-textbox {
-  padding: 30px 60px 30px 30px;
+  padding: 200px 100px 50px 50px;
 }
 
 .movie-details-title {
-  margin-bottom: 0;
-  font-size: 40px;
+  color: whitesmoke;
+  margin-bottom: 15px;
+  font-size: 48px;
 }
 .movie-details-genre {
   display: inline;
@@ -65,11 +76,18 @@ movie-details-container {
   margin-right: 10px;
 }
 .movie-details-tagline {
+  margin: 20px 0;
   font-size: 30px;
   font-style: italic;
 }
 
+.movie-details-overview {
+  margin: 10px 0 20px 0;
+  line-height: 1.5em;
+}
+
 .director-container {
+  margin-top: 20px;
   display: flex;
   font-size: 17px;
 }
@@ -82,12 +100,24 @@ movie-details-container {
   margin-left: 2.5em;
 }
 
+.movie-details-h2 {
+  margin: 20px 10px;
+}
+
 .actor-container {
   display: flex;
   overflow: scroll;
 }
 .actor-card {
-  margin: 0px 10px;
+  margin: 5px 10px;
+  background: rgb(210, 215, 192);
+  background: radial-gradient(
+    circle,
+    rgba(210, 215, 192, 1) 14%,
+    rgba(164, 3, 34, 1) 61%,
+    rgba(77, 0, 6, 1) 100%
+  );
+  box-shadow: 4px 4px rgba(77, 0, 6, 0.8);
 }
 
 /* .actor-image {
@@ -95,24 +125,30 @@ movie-details-container {
   border-radius: 3px;
 } */
 
-h1, h2 {
+h1,
+h2 {
   color: #2c2b3d;
   text-shadow: 0.2px 0.2px #4d0006;
 }
 
 h1 {
-  font-family: 'League Gothic', sans-serif;
+  font-family: "League Gothic", sans-serif;
   font-weight: 400;
   letter-spacing: 1.5px;
 }
 
 h2 {
-  font-family: 'Pathway Gothic One', sans-serif;
+  font-family: "Pathway Gothic One", sans-serif;
 }
 
 body {
-  background: rgb(210,215,192);
-  background: radial-gradient(circle, rgba(210,215,192,1) 14%, rgba(164,3,34,1) 61%, rgba(77,0,6,1) 100%); 
+  background: rgb(210, 215, 192);
+  background: radial-gradient(
+    circle,
+    rgba(210, 215, 192, 1) 14%,
+    rgba(164, 3, 34, 1) 61%,
+    rgba(77, 0, 6, 1) 100%
+  );
 }
 
 header {
@@ -127,8 +163,13 @@ header {
   width: 100vw;
   height: 120px;
 
-  background: rgb(210,215,192);
-  background: radial-gradient(circle, rgba(210,215,192,1) 14%, rgba(164,3,34,0.8) 61%, rgba(77,0,6,0.8) 100%);
+  background: rgb(210, 215, 192);
+  background: radial-gradient(
+    circle,
+    rgba(210, 215, 192, 1) 14%,
+    rgba(164, 3, 34, 0.8) 61%,
+    rgba(77, 0, 6, 0.8) 100%
+  );
 }
 
 header nav {
@@ -157,7 +198,6 @@ nav button {
   /* align-items: flex-end; */
   justify-content: center;
   flex-direction: column;
-
 }
 
 div.search {
@@ -169,7 +209,7 @@ div.search {
 
 div.search input {
   padding: 5px 20px;
-  font-family: 'BIZ UDGothic', sans-serif;
+  font-family: "BIZ UDGothic", sans-serif;
 }
 main {
   width: 100vw;
@@ -191,7 +231,6 @@ div.movie-list {
   margin: 140px 30px 0 0;
 }
 
-
 div.movie-list img {
   width: 100%;
   border-radius: 10px;
@@ -207,17 +246,15 @@ div.movie-list h2 {
 }
 
 Button {
-  font-family: 'BIZ UDGothic', sans-serif;
+  font-family: "BIZ UDGothic", sans-serif;
 }
 nav a Button {
-  font-family: 'BIZ UDGothic', sans-serif;
+  font-family: "BIZ UDGothic", sans-serif;
   width: 85px;
   padding: 5px;
 }
 
-
 Button.login {
-
 }
 
 div#root {

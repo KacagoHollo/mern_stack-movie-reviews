@@ -44,13 +44,13 @@ const Movie = () => {
   }, []);
 
   return (
-    <div>
+    <div className="movie-page">
       {details1 && details2 && (
         <MovieDetails data={details1} data2={details2} />
       )}
-      <h2>CAST AND CREW</h2>
+      <h2 className="movie-details-h2">CAST AND CREW</h2>
       {details2 && <MovieCrew data={details2} />}
-      <h2>REVIEWS</h2>
+      <h2 className="movie-details-h2">REVIEWS</h2>
       <MovieReviews
         movieId={movieId}
         movieTitle={details1.title}

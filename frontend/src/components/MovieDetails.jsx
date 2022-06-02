@@ -20,10 +20,14 @@ const MovieDetails = ({ data, data2 }) => {
         backgroundImage: `url(${backgroundPic})`,
         backgroundSize: "cover",
         borderRadius: "10px",
+        height: "100vh",
+        position: "relative",
+        zIndex: "-1",
       }}
     >
       <div className="movie-details-container">
         <img className="movie-details-image" src={moviePic} alt="movie pic" />
+
         <div className="movie-details-textbox">
           <h2 className="movie-details-title">
             {data.title} ({data.release_date.slice(0, 4)})
