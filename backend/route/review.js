@@ -35,13 +35,13 @@ router.get("/", auth({ block: false }), async (req, res) => {
   }
 
   if (req.query.movieTitle) {
+    const pattern = new RegExp(`${req.query.movieTitle}`, "i")
     const review = reviews.filter(
-      (review) => review.movieTitle === req.query.movieTitle
+      (review) => pattern.test(review.movieTitle)
     );
     return res.json(review);
   }
 
-  return res.json(reviews);
 });
 
 router.post("/", auth({ block: true }), async (req, res) => {
