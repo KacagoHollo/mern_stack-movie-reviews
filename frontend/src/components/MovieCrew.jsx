@@ -2,7 +2,6 @@ import React from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography";
 
 const MovieCrew = ({ data }) => {
   const buildActorCard = (actor, i) => {
@@ -18,12 +17,8 @@ const MovieCrew = ({ data }) => {
       <Card sx={{ minWidth: 150 }} className="actor-card" key={i}>
         <CardMedia component="img" height="200" image={actorPic} alt="" />
         <CardContent>
-          <Typography gutterBottom variant="subtitle1" component="div">
-            {actor.name}
-          </Typography>
-          <Typography variant="subtitle2" color="text.secondary">
-            {actor.character}
-          </Typography>
+          <p style={{ color: "whitesmoke" }}>{actor.name}</p>
+          <p>{actor.character}</p>
         </CardContent>
       </Card>
     );

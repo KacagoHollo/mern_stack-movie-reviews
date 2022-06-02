@@ -110,7 +110,7 @@ textarea {
 }
 .actor-card {
   margin: 5px 10px;
-  background: rgb(210, 215, 192);
+
   background: radial-gradient(
     circle,
     rgba(210, 215, 192, 1) 14%,
@@ -120,10 +120,40 @@ textarea {
   box-shadow: 4px 4px rgba(77, 0, 6, 0.8);
 }
 
-/* .actor-image {
-  height: 200px;
-  border-radius: 3px;
-} */
+.movie-reviews-review {
+  margin: 10px;
+  padding: 25px;
+  background: radial-gradient(
+    circle,
+    rgba(164, 3, 34, 0.2) 1%,
+    rgba(210, 215, 192, 1) 100%
+  );
+}
+.review-title {
+  margin-top: 15px;
+  font-size: 20px;
+}
+.review-content {
+  margin: 15px 0;
+}
+
+.input {
+  width: 100%;
+  padding: 5px;
+}
+
+.review-button {
+  margin: 10px 10px 0 0;
+  padding: 5px;
+  background: rgba(210, 215, 192, 1);
+  border: 2px solid #4d0006;
+  color: #4d0006;
+}
+.review-button:hover {
+  background: #4d0006;
+  border: 2px solid #4d0006;
+  color: rgba(210, 215, 192, 1);
+}
 
 h1,
 h2 {
