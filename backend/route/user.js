@@ -4,6 +4,7 @@ const User = require("../model/user");
 const httpModule = require("../utils/http");
 const http = httpModule("");
 const jwt = require("jsonwebtoken");
+const auth = require("../middleware/auth");
 
 const config = {
   google: {
@@ -64,9 +65,28 @@ router.post("/login", async (req, res) => {
   res.json(token);
 });
 
-// router.patch("/", auth({ block: true }), (req, res) => {
-//   const userId = res.locals.userId;
-// });
+router.patch("/", auth({ block: true }), async (req, res) => {
+  // header: token
+  // payload validation
+  if (
+    !req.body.username
+  )
+    return res
+      .status(400)
+      .send("Body must contain username.");
+
+  const user = await User.findById(res.locals.userId);
+  if (!user) return res.status(404).send("User not found.");
+
+  // update username
+  user.username = req.body.username
+
+  // save and return review
+  user.save((err) => {
+    if (err) return res.status(500).send(err);
+    res.sendStatus(200);
+  });
+});
 
 module.exports = router;
 
