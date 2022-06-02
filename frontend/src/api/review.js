@@ -19,9 +19,10 @@ export const submitUsername = async (username) => {
     console.log("NEW TOKEN:", resp.data);
     const decoded = await jwt_decode(resp.data);
     console.log("DECODE: ", decoded);
-    sessionStorage.updateItem("token", resp.data);
+    sessionStorage.clear();
+    sessionStorage.setItem("token", resp.data);
+    window.location.reload();
     return resp.data;
-
   } catch (err) {
     console.log("ERROR:", err);
   }
@@ -32,7 +33,8 @@ export const submitReview = async (
   movieTitle,
   reviewTitle,
   reviewContent,
-  reviewRating
+  reviewRating,
+  username
 ) => {
   try {
     const resp = await axios.post(
@@ -43,6 +45,7 @@ export const submitReview = async (
         title: reviewTitle,
         content: reviewContent,
         rating: reviewRating,
+        username: username,
       },
       {
         headers: {
@@ -50,6 +53,7 @@ export const submitReview = async (
         },
       }
     );
+    window.location.reload();
     return resp.data;
   } catch (err) {
     console.log(err);
@@ -63,6 +67,7 @@ export const deleteReview = async (id) => {
         authorization: sessionStorage.getItem("token"),
       },
     });
+    window.location.reload();
     return resp.data;
   } catch (err) {
     console.log(err);

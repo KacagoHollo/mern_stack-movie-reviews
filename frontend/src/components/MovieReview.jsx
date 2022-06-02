@@ -11,6 +11,7 @@ const MovieReview = ({ review, loggedin }) => {
 
   return (
     <div className="movie-reviews-review">
+      <p>{review.movieTitle}</p>
       <Rating
         name="customized-10"
         max={10}
@@ -52,7 +53,6 @@ const MovieReview = ({ review, loggedin }) => {
           <button
             onClick={() => {
               deleteReview(review._id);
-              window.location.reload();
             }}
           >
             Delete this post

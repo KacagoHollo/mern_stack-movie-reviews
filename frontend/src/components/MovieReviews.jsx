@@ -25,7 +25,11 @@ const MovieReviews = ({ movieId, movieTitle, loggedin }) => {
 
       {loggedin &&
         (loggedin.username ? (
-          <MovieReviewAdd movieId={movieId} movieTitle={movieTitle} />
+          <MovieReviewAdd
+            movieId={movieId}
+            movieTitle={movieTitle}
+            username={loggedin.username}
+          />
         ) : (
           <MovieReviewUsername />
         ))}

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Rating } from "@mui/material";
 import { submitReview } from "../api/review";
 
-const MovieReviewAdd = ({ movieId, movieTitle }) => {
+const MovieReviewAdd = ({ movieId, movieTitle, username }) => {
   const [reviewTitle, setReviewTitle] = useState("");
   const [reviewContent, setReviewContent] = useState("");
   const [reviewRating, setReviewRating] = useState(0);
@@ -40,9 +40,9 @@ const MovieReviewAdd = ({ movieId, movieTitle }) => {
               movieTitle,
               reviewTitle,
               reviewContent,
-              reviewRating
+              reviewRating,
+              username
             );
-            window.location.reload();
           }}
         >
           Post my review!
