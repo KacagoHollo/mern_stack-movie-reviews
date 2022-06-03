@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const reviewSchema = new mongoose.Schema({
   username: { type: String },
   userId: { type: String, required: true },
-  movieId: { type: String, required: true },
+  movieId: { type: String, required: true , unique: false},
   movieTitle: { type: String },
   title: { type: String },
   content: { type: String, required: true },
@@ -12,7 +12,7 @@ const reviewSchema = new mongoose.Schema({
 });
 
 const userSchema = new mongoose.Schema({
-  username: { type: String, unique: true },
+  username: { type: String},
   providers: {
     google: { type: String, required: true, unique: true },
   },
