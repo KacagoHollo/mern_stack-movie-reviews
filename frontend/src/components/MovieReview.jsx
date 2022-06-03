@@ -3,19 +3,25 @@ import { Rating } from "@mui/material";
 import { deleteReview } from "../api/review";
 import { patchReview } from "../api/review";
 import Card from "@mui/material/Card";
+import { useNavigate } from "react-router-dom";
 
 const MovieReview = ({ review, loggedin }) => {
   const [editing, setEditing] = useState(false);
-  const [editDone, setEditDone] = useState(false);
   const [rating, setRating] = useState(review.rating);
   const [title, setTitle] = useState(review.title);
   const [content, setContent] = useState(review.content);
 
-  console.log("REVIEW", review, title);
+  console.log("REVIEW", review);
+  const navigate = useNavigate();
 
   return (
     <Card className="movie-reviews-review">
-      <p>{review.movieTitle}</p>
+      <p
+        className="review-title-link"
+        onClick={() => navigate(`/movie/?id=${review.movieId}`)}
+      >
+        {review.movieTitle}
+      </p>
       <Rating
         name="customized-10"
         max={10}

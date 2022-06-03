@@ -129,6 +129,13 @@ textarea {
   margin-top: 15px;
   font-size: 20px;
 }
+
+.review-title-link:hover {
+  background: rgba(164, 3, 34, 1);
+  color: rgba(210, 215, 192, 1);
+  font-weight: bold;
+  cursor: pointer;
+}
 .review-content {
   margin: 15px 0;
 }
