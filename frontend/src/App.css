@@ -245,7 +245,7 @@ nav button {
   flex-direction: column;
 }
 
-/* div.search {
+div.search {
   position: fixed;
   top: 85px;
   left: 50%;
@@ -256,7 +256,7 @@ nav button {
   display: flex;
   align-items: center;
   gap: 10px;
-} */
+}
 
 div.search-input {
   width: 300px;
