@@ -6,17 +6,12 @@ import Card from "@mui/material/Card";
 
 const MovieReview = ({ review, loggedin }) => {
   const [editing, setEditing] = useState(false);
+  const [editDone, setEditDone] = useState(false);
   const [rating, setRating] = useState(review.rating);
   const [title, setTitle] = useState(review.title);
   const [content, setContent] = useState(review.content);
 
-  /*   <Card sx={{ minWidth: 150 }} className="actor-card" key={i}>
-    <CardMedia component="img" height="200" image={actorPic} alt="" />
-    <CardContent>
-      <p style={{ color: "whitesmoke" }}>{actor.name}</p>
-      <p>{actor.character}</p>
-    </CardContent>
-  </Card>; */
+  console.log("REVIEW", review, title);
 
   return (
     <Card className="movie-reviews-review">
@@ -25,7 +20,7 @@ const MovieReview = ({ review, loggedin }) => {
         name="customized-10"
         max={10}
         style={{ color: "rgba(164, 3, 34, 0.8)" }}
-        value={rating}
+        value={editing ? rating : review.rating}
         readOnly={!editing}
         onChange={(e) => {
           setRating(e.target.value);
@@ -52,8 +47,8 @@ const MovieReview = ({ review, loggedin }) => {
         </>
       ) : (
         <>
-          <h4 className="review-title">{title}</h4>
-          <p className="review-content">{content}</p>
+          <h4 className="review-title">{review.title}</h4>
+          <p className="review-content">{review.content}</p>
         </>
       )}
 

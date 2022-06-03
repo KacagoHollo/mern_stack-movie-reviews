@@ -18,6 +18,7 @@ const Search = () => {
   };
   const fetchData = async () => {
     const data = await getReviewByMovie({ movieTitle, reviewerName });
+    console.log("DATA:", data);
     setReviews(data);
   };
 
