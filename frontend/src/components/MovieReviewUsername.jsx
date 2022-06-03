@@ -17,7 +17,6 @@ const MovieReviewUsername = () => {
       <button
         onClick={() => {
           submitUsername(username);
-          //window.location.reload();
         }}
       >
         Submit

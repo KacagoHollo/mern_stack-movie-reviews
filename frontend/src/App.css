@@ -39,10 +39,6 @@ textarea {
 
 /* end of css reset */
 
-.movie-page {
-  /* padding-top: 150px; */
-}
-
 .movie-details-container {
   height: 100%;
   display: flex;
@@ -155,6 +151,18 @@ textarea {
   color: rgba(210, 215, 192, 1);
 }
 
+.search-page {
+  padding-top: 230px;
+}
+.search-container {
+  width: 100%;
+  position: fixed;
+  top: 150px;
+  margin-bottom: 100px;
+  display: flex;
+  justify-content: center;
+}
+
 h1,
 h2 {
   color: #2c2b3d;
@@ -230,7 +238,7 @@ nav button {
   flex-direction: column;
 }
 
-div.search {
+/* div.search {
   position: fixed;
   top: 85px;
   left: 50%;
@@ -241,10 +249,11 @@ div.search {
   display: flex;
   align-items: center;
   gap: 10px;
-}
+} */
 
 div.search-input {
   width: 300px;
+  /* position: fixed; */
 }
 
 div.search-input Textfield {
@@ -326,7 +335,7 @@ div.options h2 {
   margin-bottom: 20px;
 }
 
-div.search-container {
+/* div.search-container {
   position: absolute;
   top: 180px;
   left: 50%;
@@ -335,7 +344,7 @@ div.search-container {
   text-align: center;
   display: flex;
   gap: 20px;
-}
+} */
 
 div.search-container input {
   color: #d2d7c0;
@@ -350,8 +359,8 @@ div.search-container label {
 
 @media only screen and (max-width: 690px) {
   div.search-input {
-      gap: 5px;
-      width: 200px;
+    gap: 5px;
+    width: 200px;
   }
   Button {
     transform: scale(0.8);
@@ -360,7 +369,7 @@ div.search-container label {
 
 @media only screen and (max-width: 500px) {
   div.search-input {
-      width: 150px;
+    width: 150px;
   }
   Button {
     transform: scale(0.7);
@@ -372,8 +381,8 @@ div.search-container label {
 
 @media only screen and (max-width: 450px) {
   div.search-input {
-      width: 120px;
-      margin-left: 10px;
+    width: 120px;
+    margin-left: 10px;
   }
   Button {
     transform: scale(0.6);

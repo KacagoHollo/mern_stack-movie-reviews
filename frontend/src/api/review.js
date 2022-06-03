@@ -1,9 +1,6 @@
-import jwt_decode from "jwt-decode";
 const axios = require("axios");
 
 export const submitUsername = async (username) => {
-  console.log("USERNAME: ", username);
-  console.log("Token: ", sessionStorage.getItem("token"));
   try {
     const resp = await axios.patch(
       "http://localhost:4000/api/user",
@@ -16,9 +13,6 @@ export const submitUsername = async (username) => {
         },
       }
     );
-    console.log("NEW TOKEN:", resp.data);
-    const decoded = await jwt_decode(resp.data);
-    console.log("DECODE: ", decoded);
     sessionStorage.clear();
     sessionStorage.setItem("token", resp.data);
     window.location.reload();
@@ -99,12 +93,9 @@ export const patchReview = async (
         },
       }
     );
-    console.log("YAAAAAAAAAAAAAAY!!");
     window.location.reload();
     return resp.data;
-  } catch (err) {
-    console.log(err);
-  }
+  } catch (err) {}
 };
 
 export const getReviewByMovie = async ({
@@ -113,7 +104,6 @@ export const getReviewByMovie = async ({
   movieTitle,
   reviewerName,
 }) => {
-  console.log("MOVIEID: ", movieId);
   try {
     const resp = await axios.get(
       `http://localhost:4000/api/review?movieId=${
@@ -121,13 +111,7 @@ export const getReviewByMovie = async ({
       }&movieTitle=${movieTitle ? movieTitle : ""}&reviewerId=${
         reviewerId ? reviewerId : ""
       }&reviewerName=${reviewerName ? reviewerName : ""}`
-      /*      {
-        headers: {
-          authorization: sessionStorage.getItem("token"),
-        },
-      } */
     );
-    console.log("FROM BACKEND: ", resp.data);
     return resp.data;
   } catch (err) {
     console.log(err);

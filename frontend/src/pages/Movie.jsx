@@ -16,10 +16,7 @@ const Movie = () => {
 
   const isLoggedIn = async () => {
     const token = sessionStorage.getItem("token");
-    console.log("TOKEN: ", token);
-
     const decoded = await jwt_decode(token);
-    console.log("USER-INFO: ", decoded);
     decoded
       ? setLoggedin({ id: decoded.userId, username: decoded.username })
       : setLoggedin("");
@@ -32,15 +29,12 @@ const Movie = () => {
   const getMovieDetails = async (id) => {
     const resp1 = await movieDetails1(id);
     const resp2 = await movieDetails2(id);
-    console.log("Resp1: ", resp1);
-    console.log("Resp2: ", resp2);
     setDetails1(resp1);
     setDetails2(resp2);
   };
 
   useEffect(() => {
     getMovieDetails(movieId);
-    //406,694
   }, []);
 
   return (

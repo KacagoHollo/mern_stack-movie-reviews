@@ -29,7 +29,6 @@ const MovieReview = ({ review, loggedin }) => {
         readOnly={!editing}
         onChange={(e) => {
           setRating(e.target.value);
-          console.log(rating);
         }}
       />
       {editing ? (

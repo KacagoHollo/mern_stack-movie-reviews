@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import jwt_decode from "jwt-decode";
 import MovieReview from "../components/MovieReview";
 import { getReviewByMovie } from "../api/review";
-import TextField from '@mui/material/TextField';
+import TextField from "@mui/material/TextField";
 
 const Search = () => {
   const [loggedin, setLoggedin] = useState("");
@@ -11,9 +11,7 @@ const Search = () => {
   const [reviews, setReviews] = useState([]);
   const isLoggedIn = async () => {
     const token = sessionStorage.getItem("token");
-
     const decoded = await jwt_decode(token);
-    console.log("USER-INFO: ", decoded);
     decoded
       ? setLoggedin({ id: decoded.userId }, { username: decoded.username })
       : setLoggedin("");
@@ -33,14 +31,14 @@ const Search = () => {
   }, [movieTitle, reviewerName]);
 
   return (
-    <div>
+    <div className="search-page">
       <div className="search-container">
         <TextField
           variant="outlined"
           autoFocus
-          label="Find your review!"
+          label="Filter by movie title!"
           color="secondary"
-          className="search-input"
+          className="search-input one"
           type="text"
           value={movieTitle}
           placeholder="Movie title"
@@ -51,9 +49,9 @@ const Search = () => {
         <TextField
           variant="outlined"
           autoFocus
-          label="Find your review!"
+          label="Filter by reviewer!"
           color="secondary"
-          className="search-input"
+          className="search-input two"
           type="text"
           value={reviewerName}
           placeholder="username"
